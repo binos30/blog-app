@@ -41,7 +41,7 @@ gem "jbuilder"
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: [:windows, :jruby]
+gem "tzinfo-data", platforms: %i[windows jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -54,7 +54,7 @@ gem "slim-rails"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: [:mri, :windows]
+  gem "debug", platforms: %i[mri windows]
 
   # Configuration
   gem "dotenv-rails"
@@ -69,6 +69,15 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  # Code Formatting & Linting
+  gem "prettier_print"
+  gem "rubocop"
+  gem "rubocop-performance"
+  gem "rubocop-rails"
+  gem "syntax_tree"
+  gem "syntax_tree-haml"
+  gem "syntax_tree-rbs"
 
   # Optimize queries
   gem "bullet"
