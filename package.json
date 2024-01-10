@@ -31,7 +31,7 @@
   "lint-staged": {
     "{app,lib,spec,test}/**/*.rb": [
       "./node_modules/.bin/prettier --plugin=@prettier/plugin-ruby --write",
-      "bin/bundle exec rubocop -a"
+      "bin/bundle exec rubocop -a --require rubocop-rspec"
     ],
     "spec/**/*.rb": "rspec",
     "app/**/*.{json,js,jsx,ts,tsx,css,scss}": "./node_modules/.bin/prettier --write --ignore-unknown"
