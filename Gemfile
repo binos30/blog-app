@@ -52,12 +52,18 @@ gem "bootsnap", require: false
 # Use slim-rails for HTML templating
 gem "slim-rails"
 
+# Use devise for authentication and session
+gem "devise"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows]
 
   # Configuration
   gem "dotenv-rails"
+
+  # Testing Framework
+  gem "rspec-rails"
 end
 
 group :development do
@@ -75,6 +81,7 @@ group :development do
   gem "rubocop"
   gem "rubocop-performance"
   gem "rubocop-rails"
+  gem "rubocop-rspec"
   gem "slim_lint"
   gem "syntax_tree"
   gem "syntax_tree-haml"
