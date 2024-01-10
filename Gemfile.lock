@@ -110,10 +110,6 @@ GEM
       tilt
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
-    importmap-rails (2.0.1)
-      actionpack (>= 6.0.0)
-      activesupport (>= 6.0.0)
-      railties (>= 6.0.0)
     io-console (0.7.1)
     irb (1.11.1)
       rdoc
@@ -121,6 +117,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jsbundling-rails (1.2.2)
+      railties (>= 6.0.0)
     json (2.7.1)
     language_server-protocol (3.17.0.3)
     loofah (2.22.0)
@@ -306,8 +304,8 @@ DEPENDENCIES
   cssbundling-rails
   debug
   dotenv-rails
-  importmap-rails
   jbuilder
+  jsbundling-rails
   pg (~> 1.1)
   prettier_print
   puma (>= 5.0)
