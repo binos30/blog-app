@@ -10,17 +10,7 @@ class User < ApplicationRecord
          :validatable,
          :trackable
 
-  validates :email,
-            presence: true,
-            length: {
-              maximum: 255
-            },
-            uniqueness: {
-              case_sensitive: false
-            },
-            format: {
-              with: Devise.email_regexp
-            }
+  validates :email, length: { maximum: 255 }
   validates :password,
             presence: true,
             length: {
