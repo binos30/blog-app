@@ -1,0 +1,11 @@
+- title "New"
+
+.card
+  .card-body
+    h2 New Post
+
+    == render "form", post: @post
+
+    br
+    div
+      = link_to "Back to posts", posts_path

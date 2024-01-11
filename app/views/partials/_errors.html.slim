@@ -1,4 +1,6 @@
-- if alert.present?
+- if errors.any?
   .alert.alert-danger.alert-dismissible.fade.show role="alert"
-    = sanitize(alert, tags: %w[em strong])
+    ul.mb-0
+      - errors.each do |error|
+        li = sanitize(error, tags: %w[em strong])
     button.btn-close type="button" data-bs-dismiss="alert" aria-label="Close"

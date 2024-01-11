@@ -116,3 +116,6 @@ Bundler/OrderedGems:
 
 RSpec/ExampleLength:
   Max: 15
+
+RSpec/MultipleExpectations:
+  Max: 3

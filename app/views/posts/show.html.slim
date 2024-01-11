@@ -1,0 +1,35 @@
+- title "View"
+
+== render "partials/alert"
+== render "partials/notice"
+/ == render "partials/warning"
+
+div id="#{dom_id @post}"
+  h2 = @post.title
+  .d-flex.flex-row.align-items-center.mb-3
+    .fst-italic.me-2 = @post.user.full_name
+    span.dot
+    span.text-muted.ms-2
+      - if @post.created_at == @post.updated_at
+        = time_ago_in_words(@post.created_at, include_seconds: true)
+      - else
+        | Updated&nbsp;
+        = time_ago_in_words(@post.updated_at, include_seconds: true)
+  p = sanitize(@post.body)
+
+  .mb-3
+    - if user_signed_in?
+      = link_to new_post_path, class: "btn btn-primary btn-sm me-1" do
+        i.bi.bi-plus-lg.me-1
+        | New post
+    - if post_author?(@post)
+      = link_to edit_post_path(@post), class: "btn btn-success btn-sm me-1" do
+        i.bi.bi-pencil.me-1
+        | Edit
+      = link_to post_path(@post),
+                data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?", turbo_method: :delete },
+                class: "btn btn-danger btn-sm" do
+        i.bi.bi-trash.me-1
+        | Delete
+
+=< link_to "Back to posts", posts_path
