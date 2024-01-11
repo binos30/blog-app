@@ -1,5 +1,6 @@
 - title "View"
 
+== render "partials/errors", errors: @feedback&.errors&.full_messages || []
 == render "partials/alert"
 == render "partials/notice"
 / == render "partials/warning"
@@ -7,7 +8,7 @@
 div id="#{dom_id @post}"
   h2 = @post.title
   .d-flex.flex-row.align-items-center.mb-3
-    .fst-italic.me-2 = @post.user.full_name
+    .fst-italic.me-2 = @post.author
     span.dot
     span.text-muted.ms-2
       - if @post.created_at == @post.updated_at
@@ -32,4 +33,14 @@ div id="#{dom_id @post}"
         i.bi.bi-trash.me-1
         | Delete
 
-=< link_to "Back to posts", posts_path
+  =< link_to "Back to posts", posts_path
+
+  h2.mt-3 = pluralize(@post.feedbacks.count, "feedback")
+  - if @post.feedbacks.count.positive?
+    .d-flex.row.mb-3
+      .d-flex.flex-column.col-md-8
+        .bg-white.p-2.px-4
+          = render @post.feedbacks.includes([:user]).order(created_at: :desc)
+
+  - if can_feedback?(@post)
+    == render "feedbacks/form"
