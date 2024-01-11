@@ -10,6 +10,9 @@ class User < ApplicationRecord
          :validatable,
          :trackable
 
+  has_many :posts, dependent: :destroy
+  has_many :feedbacks, through: :posts
+
   validates :email, length: { maximum: 255 }
   validates :password,
             presence: true,

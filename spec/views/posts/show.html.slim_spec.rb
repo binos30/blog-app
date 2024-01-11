@@ -9,7 +9,7 @@ RSpec.describe "posts/show" do
 
   before { assign(:post, Post.create!(title: "Title", body: "MyText", user:)) }
 
-  it "renders attributes in <p>" do
+  it "renders attributes" do
     render
     expect(rendered).to match(/Title/)
     expect(rendered).to match(/MyText/)
