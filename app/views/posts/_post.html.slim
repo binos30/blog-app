@@ -1,0 +1,22 @@
+div id="#{dom_id post}"
+  .col
+    .card.h-100
+      = image_tag "https://via.placeholder.com/20x10", loading: "lazy", alt: "...", class: "card-img-top"
+      .card-body
+        h5.card-title
+          = link_to post.title, post, class: "stretched-link"
+        p.card-text
+          - if post.body.present? && post.body.length > 200
+            = truncate(sanitize(post.body), length: 200)
+          - else
+            = sanitize(post.body)
+      .card-footer
+        .d-flex.flex-row.align-items-center
+          .fw-semibold.me-2 = post.user.full_name
+          span.dot
+          small.text-muted.ms-2
+            - if post.created_at == post.updated_at
+              = time_ago_in_words(post.created_at, include_seconds: true)
+            - else
+              | Updated&nbsp;
+              = time_ago_in_words(post.updated_at, include_seconds: true)

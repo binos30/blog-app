@@ -1,4 +1,4 @@
 - if notice.present?
   .alert.alert-success.alert-dismissible.fade.show role="alert"
-    = notice
+    = sanitize(notice, tags: %w[em strong])
     button.btn-close type="button" data-bs-dismiss="alert" aria-label="Close"

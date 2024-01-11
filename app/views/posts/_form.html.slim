@@ -1,0 +1,12 @@
+= form_with(model: post) do |form|
+  .row.mb-3
+    .col-md-6
+      = form.label :title, class: "form-label"
+      = form.text_field :title, class: "form-control"
+      == render "partials/errors", errors: post.errors.full_messages_for(:title)
+  .row.mb-3
+    .col-md-6
+      = form.label :body, class: "form-label"
+      = form.text_area :body, class: "form-control"
+      == render "partials/errors", errors: post.errors.full_messages_for(:body)
+  = form.submit class: "btn btn-primary btn-sm"

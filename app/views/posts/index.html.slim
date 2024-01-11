@@ -1,0 +1,22 @@
+- title "Posts" if current_page?(posts_path)
+
+== render "partials/alert"
+== render "partials/notice"
+/ == render "partials/warning"
+
+.d-flex.justify-content-between
+  h2 Posts
+  div
+    - if user_signed_in?
+      = link_to new_post_path, class: "btn btn-primary btn-sm" do
+        i.bi.bi-plus-lg.me-1
+        | New Post
+
+- if @posts.any?
+  #posts.row.row-cols-1.row-cols-md-3.g-4.mb-3
+    - @posts.each do |post|
+      = render post
+- else
+  .text-center.w-100
+    p.mt-3
+      | No posts found.

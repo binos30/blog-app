@@ -7,6 +7,8 @@ nav.navbar.navbar-expand-lg.fixed-top.navbar-dark.bg-primary
       ul.navbar-nav.me-auto.mb-2.mb-lg-0
         li.nav-item
           = link_to "Home", root_path, class: "nav-link #{active_class(root_path)}"
+        li.nav-item
+          = link_to "Blogs", posts_path, class: "nav-link #{active_class(posts_path)}"
         - if user_signed_in?
           li.nav-item.dropdown
             a.nav-link.dropdown-toggle#navbarDropdownMenuLink href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
