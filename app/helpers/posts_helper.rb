@@ -6,8 +6,4 @@ module PostsHelper
 
     post.user_id == current_user.id
   end
-
-  def can_feedback?(post)
-    post.user_id != current_user&.id
-  end
 end
