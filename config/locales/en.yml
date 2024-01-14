@@ -34,3 +34,14 @@ en:
     create: "%{record} <strong>%{name}</strong> was successfully created."
     update: "%{record} <strong>%{name}</strong> was successfully updated."
     delete: "%{record} <strong>%{name}</strong> was successfully deleted."
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          unit: ""
+          thousand: K
+          million: M
+          billion: B
+          trillion: T
+          quadrillion: Q

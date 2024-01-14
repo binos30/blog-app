@@ -35,7 +35,7 @@ div id="#{dom_id @post}"
 
   =< link_to "Back to posts", posts_path
 
-  h2.mt-3 = pluralize(@post.feedbacks.count, "feedback")
+  h2.mt-3 = pluralize(format_number_to_human(@post.feedbacks.count), "feedback")
   - if @post.feedbacks.count.positive?
     .d-flex.row.mb-3
       .d-flex.flex-column.col-md-8

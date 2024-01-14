@@ -15,4 +15,21 @@ module ApplicationHelper
 
     ActiveSupport::TaggedLogging.new(logger)
   end
+
+  # Pretty prints (formats and approximates) a number in a way it is more readable by humans
+  # (e.g.: 1200000000 becomes "1.2B")
+  def format_number_to_human(number)
+    number_to_human(
+      number,
+      precision: 1,
+      significant: false,
+      round_mode: :down,
+      format: "%n%u",
+      units: {
+        thousand: "K",
+        million: "M",
+        billion: "B"
+      }
+    )
+  end
 end
