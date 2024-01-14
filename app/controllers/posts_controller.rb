@@ -76,8 +76,7 @@ class PostsController < ApplicationController
     @post = Post.find_by(id: params[:id], user_id: current_user.id)
     return unless @post.nil?
 
-    flash.now[:warning] = t(:not_authorized)
-    redirect_to posts_url
+    redirect_to posts_url, warning: t(:not_authorized)
   end
 
   # Use callbacks to share common setup or constraints between actions.

@@ -3,7 +3,7 @@
 == render "partials/errors", errors: @feedback&.errors&.full_messages || []
 == render "partials/alert"
 == render "partials/notice"
-/ == render "partials/warning"
+== render "partials/warning"
 
 div id="#{dom_id @post}"
   h2 = @post.title
