@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "sendgrid/templates/post_feedback"
-
 class Feedback < ApplicationRecord
   include Sanitizable
 
@@ -13,7 +11,7 @@ class Feedback < ApplicationRecord
   before_save :sanitize_fields
 
   # Send email only if feedback author is not equal to blog post author
-  after_create :send_email, if: -> { user_id != post.user_id }
+  after_create_commit :send_feedback_email, if: :can_send_email?
 
   private
 
@@ -27,7 +25,11 @@ class Feedback < ApplicationRecord
     self.body = sanitize(body, scrubber: WysiwygScrubber.new)
   end
 
-  def send_email
-    Templates::PostFeedback.new(self).send_email
+  def send_feedback_email
+    PostFeedbackEmailSenderJob.perform_later(self)
+  end
+
+  def can_send_email?
+    (user_id != post.user_id) && !Rails.env.test? && ENV["SENDGRID_API_KEY"].present?
   end
 end

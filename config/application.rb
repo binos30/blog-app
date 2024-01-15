@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "boot"
 
 require "rails"
@@ -23,10 +25,14 @@ module BlogApp
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.1
 
+    # Queuing backend for Active Job
+    config.active_job.queue_adapter = :solid_queue
+    config.active_job.queue_name_prefix = Rails.env
+
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
-    config.autoload_lib(ignore: %w(assets tasks))
+    config.autoload_lib(ignore: %w[assets tasks])
 
     # Configuration for the application, engines, and railties goes here.
     #

@@ -15,8 +15,6 @@ module Templates
     end
 
     def send_email # rubocop:disable Metrics/AbcSize
-      return if Rails.env.test? || ENV["SENDGRID_API_KEY"].blank?
-
       mail = SendGrid::Mail.new
       mail.add_category(SendGrid::Category.new(name: "Post Feedback"))
       mail.add_content(SendGrid::Content.new(type: "text/html", value: html_content))
