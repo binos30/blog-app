@@ -287,6 +287,8 @@ GEM
     slim_lint (0.25.0)
       rubocop (>= 1.0, < 2.0)
       slim (>= 3.0, < 6.0)
+    solid_queue (0.1.2)
+      rails (>= 7.0.3.1)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -361,6 +363,7 @@ DEPENDENCIES
   sendgrid-ruby
   slim-rails
   slim_lint
+  solid_queue
   sprockets-rails
   stimulus-rails
   syntax_tree
