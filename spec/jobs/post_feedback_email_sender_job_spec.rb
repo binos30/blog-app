@@ -19,9 +19,9 @@ RSpec.describe PostFeedbackEmailSenderJob do
       )
     end
 
-    let(:blog_post) { Post.create!(title: "Title", body: "MyText", user: user_john) }
+    let(:post) { Post.create!(title: "Title", body: "MyText", user: user_john) }
 
-    let(:feedback) { { post: blog_post, user: user_jane, body: "MyFeedbackBody" } }
+    let(:feedback) { Feedback.create!(post:, user: user_jane, body: "MyFeedbackBody") }
 
     it "queues the job" do
       ActiveJob::Base.queue_adapter = :test
