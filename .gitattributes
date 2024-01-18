@@ -7,3 +7,11 @@ db/schema.rb linguist-generated
 vendor/* linguist-vendored
 config/credentials/*.yml.enc diff=rails_credentials
 config/credentials.yml.enc diff=rails_credentials
+
+# Mark the yarn lockfile as having been generated.
+yarn.lock linguist-generated
+
+# Identify the release and plugin bundles as binary content.
+# This way Git won't bother showing massive diffs when each time you subsequently add or update them
+/.yarn/releases/** binary
+/.yarn/plugins/** binary
