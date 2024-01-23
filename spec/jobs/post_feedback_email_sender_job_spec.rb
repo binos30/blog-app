@@ -19,7 +19,7 @@ RSpec.describe PostFeedbackEmailSenderJob do
       )
     end
 
-    let(:post) { Post.create!(title: "Title", body: "MyText", user: user_john) }
+    let(:post) { Post.create!(title: "Title", body: "MyText", user: user_john, status: :public) }
 
     let(:feedback) { Feedback.create!(post:, user: user_jane, body: "MyFeedbackBody") }
 

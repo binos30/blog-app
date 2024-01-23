@@ -11,8 +11,8 @@ RSpec.describe "posts/index" do
     assign(
       :posts,
       [
-        Post.create!(title: "Title", body: "MyText", user:),
-        Post.create!(title: "Title", body: "MyText", user:)
+        Post.create!(title: "Title", body: "MyText", user:, status: :public),
+        Post.create!(title: "Title", body: "MyText", user:, status: :public)
       ]
     )
   end

@@ -18,12 +18,12 @@ RSpec.describe "post/:post_id/feedbacks" do
   let(:user) do
     User.create!(email: "jd@gmail.com", password: "pass123", first_name: "John", last_name: "Doe")
   end
-  let(:blog_post) { Post.create!(title: "Title", body: "MyText", user:) }
+  let(:blog_post) { Post.create!(title: "Title", body: "MyText", user:, status: :public) }
 
   # This should return the minimal set of attributes required to create a valid
   # Feedback. As you add validations to Feedback, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { user_id: user.id, body: "MyPostBody" } }
+  let(:valid_attributes) { { user_id: user.id, body: "MyPostBody", status: :public } }
 
   let(:invalid_attributes) { { body: "" } }
 

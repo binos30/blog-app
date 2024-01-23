@@ -22,7 +22,9 @@ RSpec.describe "/posts" do
   # This should return the minimal set of attributes required to create a valid
   # Post. As you add validations to Post, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { user_id: user.id, title: "MyPostTitle", body: "MyPostBody" } }
+  let(:valid_attributes) do
+    { user_id: user.id, title: "MyPostTitle", body: "MyPostBody", status: :public }
+  end
 
   let(:invalid_attributes) { { title: "<MyPostTitle>", body: "MyPostBody" } }
 

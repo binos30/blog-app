@@ -21,7 +21,11 @@ RSpec.describe PostsHelper do
     User.create!(email: "jdoe@gmail.com", password: "pass123", first_name: "Jane", last_name: "Doe")
   end
 
-  let(:post) { Post.create!({ user_id: user_john.id, title: "MyPostTitle", body: "MyPostBody" }) }
+  let(:post) do
+    Post.create!(
+      { user_id: user_john.id, title: "MyPostTitle", body: "MyPostBody", status: :public }
+    )
+  end
 
   describe "#post_author?" do
     it "returns true if post author is equal to current user" do

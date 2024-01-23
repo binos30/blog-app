@@ -7,11 +7,13 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.includes([:user]).all
+    @posts = Post.includes([:user]).public_status
   end
 
   # GET /posts/1
   def show
+    return if @post.public_status? || @post.user_id == current_user&.id
+    redirect_to posts_url
   end
 
   # GET /posts/new
@@ -89,6 +91,6 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:title, :body).each_value { |value| value.try(:strip!) }
+    params.require(:post).permit(:title, :body, :status).each_value { |value| value.try(:strip!) }
   end
 end

@@ -45,3 +45,10 @@ en:
           billion: B
           trillion: T
           quadrillion: Q
+  activerecord:
+    attributes:
+      post:
+        statuses:
+          public: "Public"
+          private: "Private"
+          archived: "Archived"

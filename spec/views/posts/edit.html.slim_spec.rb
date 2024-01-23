@@ -7,7 +7,7 @@ RSpec.describe "posts/edit" do
     User.create!(email: "jd@gmail.com", password: "pass123", first_name: "John", last_name: "Doe")
   end
 
-  let(:post) { Post.create!(title: "MyString", body: "MyText", user:) }
+  let(:post) { Post.create!(title: "MyString", body: "MyText", user:, status: :public) }
 
   before { assign(:post, post) }
 

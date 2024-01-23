@@ -6,6 +6,12 @@
       == render "partials/errors", errors: post.errors.full_messages_for(:title)
   .row.mb-3
     .col-md-6
+      = form.label :status, class: "form-label"
+      = form.select :status, enum_for_select(Post, :status),
+        {}, class: "form-select"
+      == render "partials/errors", errors: post.errors.full_messages_for(:status)
+  .row.mb-3
+    .col-md-6
       = form.label :body, class: "form-label"
       = form.text_area :body, class: "form-control"
       == render "partials/errors", errors: post.errors.full_messages_for(:body)

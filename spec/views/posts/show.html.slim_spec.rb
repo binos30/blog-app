@@ -7,7 +7,7 @@ RSpec.describe "posts/show" do
     User.create!(email: "jd@gmail.com", password: "pass123", first_name: "John", last_name: "Doe")
   end
 
-  before { assign(:post, Post.create!(title: "Title", body: "MyText", user:)) }
+  before { assign(:post, Post.create!(title: "Title", body: "MyText", user:, status: :public)) }
 
   it "renders attributes" do
     render
