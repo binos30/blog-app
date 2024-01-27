@@ -47,10 +47,10 @@ COPY . .
 RUN bundle exec bootsnap precompile app/ lib/
 
 # Secret files in Docker builds make use of secret mounts
-RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cat /etc/secrets/.env
+RUN --mount=type=secret,id=_env,dst=/etc/secrets/.env cp /etc/secrets/.env
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails $DATABASE_URL assets:precompile
+RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 
 # Final stage for app image
