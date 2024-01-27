@@ -28,7 +28,7 @@
 #       enabled: "ON"
 
 en:
-  title: BlogApp
+  title: InstaBlog
   not_authorized: "Not Authorized"
   record:
     create: "%{record} <strong>%{name}</strong> was successfully created."
