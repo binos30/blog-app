@@ -9,56 +9,58 @@ require "sendgrid-ruby"
 #                  recipient type can be either of the following: 'to', 'cc' or 'bcc'.
 #   substitutions: JSON array of all the substitution values from the keys in the template.
 #
-class SgMailer
-  attr_reader :mail, :recipients, :substitutions, :personalization
+module Sendgrid
+  class SgMailer
+    attr_reader :mail, :recipients, :substitutions, :personalization
 
-  def initialize(mail_object, recipients, substitutions = [])
-    @mail = mail_object
-    @recipients = recipients
-    @substitutions = substitutions
-    @personalization = SendGrid::Personalization.new
+    def initialize(mail_object, recipients, substitutions = [])
+      @mail = mail_object
+      @recipients = recipients
+      @substitutions = substitutions
+      @personalization = SendGrid::Personalization.new
 
-    set_personalizations
-  end
+      set_personalizations
+    end
 
-  def send_mail
-    sg = SendGrid::API.new(api_key: ENV.fetch("SENDGRID_API_KEY", nil))
-    sg.client.mail._("send").post(request_body: mail.to_json)
-  end
+    def send_mail
+      sg = SendGrid::API.new(api_key: ENV.fetch("SENDGRID_API_KEY", nil))
+      sg.client.mail._("send").post(request_body: mail.to_json)
+    end
 
-  private
+    private
 
-  # Set the needed personalizations.
-  def set_personalizations
-    set_recipients
-    set_substitutions if substitutions.any?
-    mail.add_personalization(personalization)
-  end
+    # Set the needed personalizations.
+    def set_personalizations
+      set_recipients
+      set_substitutions if substitutions.any?
+      mail.add_personalization(personalization)
+    end
 
-  # Set the personalization recipients.
-  def set_recipients # rubocop:disable Metrics/AbcSize
-    recipients.each do |recipient|
-      case recipient["type"]
-      when "bcc"
-        personalization.add_bcc(
-          SendGrid::Email.new(email: recipient["email"], name: recipient["name"])
-        )
-      when "cc"
-        personalization.add_cc(
-          SendGrid::Email.new(email: recipient["email"], name: recipient["name"])
-        )
-      when "to"
-        personalization.add_to(
-          SendGrid::Email.new(email: recipient["email"], name: recipient["name"])
-        )
+    # Set the personalization recipients.
+    def set_recipients # rubocop:disable Metrics/AbcSize
+      recipients.each do |recipient|
+        case recipient["type"]
+        when "bcc"
+          personalization.add_bcc(
+            SendGrid::Email.new(email: recipient["email"], name: recipient["name"])
+          )
+        when "cc"
+          personalization.add_cc(
+            SendGrid::Email.new(email: recipient["email"], name: recipient["name"])
+          )
+        when "to"
+          personalization.add_to(
+            SendGrid::Email.new(email: recipient["email"], name: recipient["name"])
+          )
+        end
       end
     end
-  end
 
-  # Set the personalization substitutions.
-  def set_substitutions
-    substitutions.each do |substitution|
-      personalization.add_dynamic_template_data(substitution["key"] => substitution["value"])
+    # Set the personalization substitutions.
+    def set_substitutions
+      substitutions.each do |substitution|
+        personalization.add_dynamic_template_data(substitution["key"] => substitution["value"])
+      end
     end
   end
 end

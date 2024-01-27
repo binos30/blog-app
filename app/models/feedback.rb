@@ -22,7 +22,7 @@ class Feedback < ApplicationRecord
   end
 
   def sanitize_fields
-    self.body = sanitize(body, scrubber: WysiwygScrubber.new)
+    self.body = sanitize(body, scrubber: HtmlScrubbers::WysiwygScrubber.new)
   end
 
   def send_feedback_email

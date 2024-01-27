@@ -25,6 +25,6 @@ class Post < ApplicationRecord
   private
 
   def sanitize_fields
-    self.body = sanitize(body, scrubber: WysiwygScrubber.new)
+    self.body = sanitize(body, scrubber: HtmlScrubbers::WysiwygScrubber.new)
   end
 end

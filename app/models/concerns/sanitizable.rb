@@ -3,8 +3,5 @@
 module Sanitizable
   extend ActiveSupport::Concern
 
-  included do
-    require "html_scrubbers/wysiwyg_scrubber"
-    include ActionView::Helpers::SanitizeHelper
-  end
+  included { include ActionView::Helpers::SanitizeHelper }
 end
