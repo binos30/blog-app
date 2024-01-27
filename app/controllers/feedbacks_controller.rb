@@ -6,12 +6,12 @@ class FeedbacksController < ApplicationController
   # POST /feedbacks
   def create # rubocop:disable Metrics/AbcSize
     @post = Post.find(params[:post_id])
-    @feedback = Feedback.new(feedback_params.merge(post_id: @post.id, user_id: current_user.id))
+    @feedback = @post.feedbacks.new(feedback_params.merge!(user: current_user))
 
     respond_to do |format|
       if @feedback.save
         format.html do
-          redirect_to post_path(@post), notice: t("record.create", record: Feedback.name, name: "")
+          redirect_to @post, notice: t("record.create", record: Feedback.name, name: "")
         end
         format.json { render "posts/show", status: :created, location: @post }
       else

@@ -1,6 +1,8 @@
 nav.navbar.navbar-expand-lg.fixed-top.navbar-dark.bg-primary
   .container-fluid
-    = link_to "Logo", root_path, class: "navbar-brand"
+    = link_to root_path, class: "navbar-brand" do
+      = image_tag("logo.svg", width: "30", height: "25", class: "d-inline-block align-text-top", alt: "Logo")
+      | InstaBlog
     button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
       span.navbar-toggler-icon
     .collapse.navbar-collapse#navbarSupportedContent

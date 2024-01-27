@@ -1,11 +1,13 @@
 - title "New"
 
-.card
-  .card-body
-    h2 New Post
+.row
+  .col-md-6.offset-md-3
+    .card
+      .card-body
+        h2 New Post
 
-    == render "form", post: @post
+        == render "form", post: @post
 
-    br
-    div
-      = link_to "Back to posts", posts_path
+        br
+        div
+          = link_to "Back to posts", posts_path
