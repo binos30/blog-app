@@ -38,7 +38,7 @@ RUN bundle install && \
 
 # Install node modules
 COPY package.json yarn.lock ./
-RUN yarn install --immutable
+RUN yarn set version 4.0.2 && yarn install --immutable
 
 # Copy application code
 COPY . .
