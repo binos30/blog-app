@@ -35,6 +35,6 @@ RSpec.describe User do
     user.save
     user.update(password: "admin123")
     user.reload
-    expect(user.password).not_to eq("pass123")
+    expect(user.password).to eq("admin123")
   end
 end
