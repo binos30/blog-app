@@ -14,7 +14,7 @@ nav.navbar.navbar-expand-lg.fixed-top.navbar-dark.bg-primary
         - if user_signed_in?
           li.nav-item.dropdown
             a.nav-link.dropdown-toggle#navbarDropdownMenuLink href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-              = current_user.initials
+              = current_user.decorate.initials
             ul.dropdown-menu aria-labelledby="navbarDropdownMenuLink"
               li
                 = link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item #{active_class(edit_user_registration_path)}"
