@@ -17,9 +17,7 @@ div id="#{dom_id post}"
           small.text-muted.ms-2
             - if post.created_at == post.updated_at
               | Posted&nbsp;
-              = time_ago_in_words(post.created_at, include_seconds: true)
-              | &nbsp;ago
+              = post.created_time_ago
             - else
               | Edited&nbsp;
-              = time_ago_in_words(post.updated_at, include_seconds: true)
-              | &nbsp;ago
+              = post.updated_time_ago

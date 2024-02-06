@@ -5,6 +5,9 @@ class PostsController < ApplicationController
   before_action :correct_user, only: %i[edit update destroy]
   before_action :set_post, only: %i[show edit update destroy]
 
+  # Defines a helper method to access decorated instance variables.
+  decorates_assigned :posts, :post
+
   # GET /posts
   def index
     @posts = Post.includes([:user]).public_status
