@@ -8,17 +8,15 @@
 div id="#{dom_id @post}"
   h2 = @post.title
   .d-flex.flex-row.align-items-center.mb-3
-    .fst-italic.me-2 = @post.author
+    .fst-italic.me-2 = post.author
     span.dot
     span.text-muted.ms-2
       - if @post.created_at == @post.updated_at
         | Posted&nbsp;
-        = time_ago_in_words(@post.created_at, include_seconds: true)
-        | &nbsp;ago
+        = post.created_time_ago
       - else
         | Edited&nbsp;
-        = time_ago_in_words(@post.updated_at, include_seconds: true)
-        | &nbsp;ago
+        = post.updated_time_ago
   p = sanitize(@post.body)
 
   .mb-3
@@ -43,6 +41,6 @@ div id="#{dom_id @post}"
     .d-flex.row.mb-3
       .d-flex.flex-column.col-md-8
         #post-feedbacks.bg-white.px-4.pt-2.pb-4.rounded-3
-          = render @post.feedbacks.includes([:user]).order(created_at: :asc)
+          = render @post.feedbacks.includes([:user]).order(created_at: :asc).decorate
 
   == render "feedbacks/form"

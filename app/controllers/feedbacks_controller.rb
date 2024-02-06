@@ -3,6 +3,9 @@
 class FeedbacksController < ApplicationController
   before_action :authenticate_user!
 
+  # Defines a helper method to access decorated instance variables.
+  decorates_assigned :post
+
   # POST /feedbacks
   def create # rubocop:disable Metrics/AbcSize
     @post = Post.find(params[:post_id])

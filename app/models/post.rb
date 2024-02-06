@@ -14,14 +14,6 @@ class Post < ApplicationRecord
 
   before_save :sanitize_fields
 
-  def author
-    user.full_name
-  end
-
-  def author_email
-    user.email
-  end
-
   private
 
   def sanitize_fields

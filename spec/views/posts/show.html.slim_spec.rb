@@ -7,7 +7,16 @@ RSpec.describe "posts/show" do
     User.create!(email: "jd@gmail.com", password: "pass123", first_name: "John", last_name: "Doe")
   end
 
-  before { assign(:post, Post.create!(title: "Title", body: "MyText", user:, status: :public)) }
+  let(:post) { Post.create!(title: "Title", body: "MyText", user:, status: :public) }
+
+  before do
+    assign(:post, post)
+
+    # Turns off the verifying of partial doubles for the duration of the block,
+    # this is useful in situations where methods are defined at run time and you wish
+    # to define stubs for them but not turn off partial doubles for the entire run suite.
+    without_partial_double_verification { allow(view).to receive(:post).and_return(post.decorate) }
+  end
 
   it "renders attributes" do
     render

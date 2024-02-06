@@ -1,9 +1,8 @@
 .feedback-section.mt-3.p-4 id="#{dom_id feedback}"
   .d-flex.flex-row.align-items-center.feedback-user
-    .fw-bold.me-2 = feedback.user.full_name
+    .fw-bold.me-2 = feedback.author
     span.dot
     span.text-muted.ms-2
-      = time_ago_in_words(feedback.created_at, include_seconds: true)
-      | &nbsp;ago
+      = feedback.created_time_ago
   .feedback-body
     span = feedback.body
