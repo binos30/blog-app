@@ -10,8 +10,8 @@ module Sendgrid
       attr_reader :feedback, :post
 
       def initialize(feedback)
-        @feedback = feedback
-        @post = feedback.post
+        @feedback = feedback.decorate
+        @post = feedback.post.decorate
       end
 
       def send_email # rubocop:disable Metrics/AbcSize
@@ -23,8 +23,7 @@ module Sendgrid
             email: ENV.fetch("SENDGRID_FROM_EMAIL", nil),
             name: ENV.fetch("SENDGRID_FROM_NAME", nil)
           )
-        mail.reply_to =
-          SendGrid::Email.new(email: feedback.user.email, name: feedback.user.full_name)
+        mail.reply_to = SendGrid::Email.new(email: feedback.author_email, name: feedback.author)
         mail.subject = "Post##{feedback.post_id} Feedback"
 
         # Set the recipients. You can specify recipient type to: 'to', 'cc' or 'bcc'.

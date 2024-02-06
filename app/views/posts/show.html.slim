@@ -41,6 +41,6 @@ div id="#{dom_id @post}"
     .d-flex.row.mb-3
       .d-flex.flex-column.col-md-8
         #post-feedbacks.bg-white.px-4.pt-2.pb-4.rounded-3
-          = render @post.feedbacks.includes([:user]).order(created_at: :asc)
+          = render @post.feedbacks.includes([:user]).order(created_at: :asc).decorate
 
   == render "feedbacks/form"
