@@ -10,6 +10,7 @@ class User < ApplicationRecord
          :validatable,
          :trackable
 
+  belongs_to :role
   has_many :posts, dependent: :destroy
   has_many :feedbacks, through: :posts
 
@@ -32,9 +33,14 @@ class User < ApplicationRecord
     validates :last_name
   end
 
+  before_validation :set_role, on: :create, if: -> { role_id.blank? }
   before_create :set_defaults
 
   private
+
+  def set_role
+    self.role = Role.find_or_create_by!(name: "Member")
+  end
 
   def set_defaults
     self.reset_password_token = SecureRandom.urlsafe_base64
