@@ -8,4 +8,8 @@ class UserDecorator < ApplicationDecorator
   def initials
     first_name.chr.concat(last_name.chr)
   end
+
+  def administrator?
+    role.name.casecmp("administrator").zero?
+  end
 end

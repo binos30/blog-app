@@ -12,6 +12,10 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { sessions: "users/sessions" }
 
+  authenticate :user, lambda { |u| u.decorate.administrator? } do
+    mount MissionControl::Jobs::Engine, at: "/admin/jobs"
+  end
+
   resources :posts do
     resources :feedbacks, only: :create
   end
