@@ -15,6 +15,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
+    @feedback = @post.feedbacks.build
     return if @post.public_status? || @post.user_id == current_user&.id
     redirect_to posts_url
   end
@@ -73,6 +74,10 @@ class PostsController < ApplicationController
       end
       format.json { head :no_content }
     end
+  end
+
+  def by_author
+    @posts = Post.by_author(current_user.id)
   end
 
   private

@@ -1,4 +1,4 @@
-= form_with model: [@post, @post.feedbacks.build] do |form|
+= form_with model: [@post, @feedback] do |form|
   .d-flex.flex-column.col-md-6.mt-4.mb-4
     = form.text_area :body, class: "form-control mb-3", placeholder: "Type your feedback"
     = form.submit class: "btn btn-primary btn-sm"

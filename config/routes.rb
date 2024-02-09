@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   resources :posts do
     resources :feedbacks, only: :create
   end
+
+  get "/users/posts", to: "posts#by_author"
 end

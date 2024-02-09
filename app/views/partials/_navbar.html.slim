@@ -17,6 +17,8 @@ nav.navbar.navbar-expand-lg.fixed-top.navbar-dark.bg-primary
               = current_user.decorate.initials
             ul.dropdown-menu aria-labelledby="navbarDropdownMenuLink"
               li
+                = link_to "My Posts", users_posts_path, class: "dropdown-item #{active_class(users_posts_path)}"
+              li
                 = link_to "Edit Profile", edit_user_registration_path, class: "dropdown-item #{active_class(edit_user_registration_path)}"
               li
                 = link_to "Sign Out", destroy_user_session_path, "data-turbo-method": :delete, class: "dropdown-item"

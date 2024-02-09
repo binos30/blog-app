@@ -14,6 +14,8 @@ class Post < ApplicationRecord
 
   before_save :sanitize_fields
 
+  scope :by_author, ->(author_id) { where(user_id: author_id) }
+
   private
 
   def sanitize_fields

@@ -11,6 +11,7 @@ RSpec.describe "posts/show" do
 
   before do
     assign(:post, post)
+    assign(:feedback, post.feedbacks.build)
 
     # Turns off the verifying of partial doubles for the duration of the block,
     # this is useful in situations where methods are defined at run time and you wish

@@ -1,16 +1,24 @@
-div id="#{dom_id post}"
-  .col
-    .card.h-100
-      = image_tag "https://via.placeholder.com/20x10", loading: "lazy", alt: "...", class: "card-img-top"
-      .card-body
-        h5.card-title
-          = link_to post.title, post, class: "stretched-link"
-        p.card-text
-          - if post.body.present? && post.body.length > 200
-            = truncate(sanitize(post.body), length: 200)
+.col id="#{dom_id post}"
+  .card.h-100
+    = image_tag "https://via.placeholder.com/20x10", loading: "lazy", alt: "...", class: "card-img-top"
+    .card-body
+      h5.card-title
+        = link_to post.title, post, class: "stretched-link"
+      p.card-text
+        - if post.body.present? && post.body.length > 200
+          = truncate(sanitize(post.body), length: 200)
+        - else
+          = sanitize(post.body)
+    .card-footer
+      - if current_page?(users_posts_path)
+        small.text-muted
+          - if post.created_at == post.updated_at
+            | Posted&nbsp;
+            = post.created_time_ago
           - else
-            = sanitize(post.body)
-      .card-footer
+            | Edited&nbsp;
+            = post.updated_time_ago
+      - else
         .d-flex.flex-row.align-items-center
           .fw-semibold.me-2 = post.author
           span.dot
