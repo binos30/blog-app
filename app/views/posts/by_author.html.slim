@@ -6,11 +6,5 @@
       i.bi.bi-plus-lg.me-1
       | New Post
 
-- if @posts.any?
-  #posts.row.row-cols-1.row-cols-md-3.g-4.mb-3
-    - posts.each do |post|
-      = render post
-- else
-  .text-center.w-100
-    h4.mt-3
-      | No posts found.
+#posts
+  == render "content"
