@@ -10,7 +10,7 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.includes([:user]).public_status
+    @posts = Post.includes([:user]).public_status(params[:search])
   end
 
   # GET /posts/1
@@ -77,7 +77,7 @@ class PostsController < ApplicationController
   end
 
   def by_author
-    @posts = Post.by_author(current_user.id)
+    @posts = Post.by_author(current_user.id, params[:search])
   end
 
   private

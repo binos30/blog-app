@@ -14,7 +14,32 @@ class Post < ApplicationRecord
 
   before_save :sanitize_fields
 
-  scope :by_author, ->(author_id) { where(user_id: author_id) }
+  scope :public_status,
+        ->(search = "") do
+          search = search&.strip
+
+          if search.present?
+            where(status: :public).where(
+              "title ILIKE :search OR body ILIKE :search",
+              search: "%#{search}%"
+            )
+          else
+            where(status: :public)
+          end
+        end
+  scope :by_author,
+        ->(author_id, search = "") do
+          search = search&.strip
+
+          if search.present?
+            where(user_id: author_id).where(
+              "title ILIKE :search OR body ILIKE :search",
+              search: "%#{search}%"
+            )
+          else
+            where(user_id: author_id)
+          end
+        end
 
   private
 
