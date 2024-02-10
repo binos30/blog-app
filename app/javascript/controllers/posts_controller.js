@@ -1,13 +1,16 @@
 import { Controller } from "@hotwired/stimulus";
+import TurboProgressBar from "../components/TurboProgressBar";
 import { debouncePromise } from "../utils/debouncePromise";
 
 // Connects to data-controller="posts"
 export default class extends Controller {
   initialize() {
     this.search = debouncePromise(this.search.bind(this));
+    this.turboProgressBar = new TurboProgressBar();
   }
 
   search(event) {
+    this.turboProgressBar.show();
     const value = event.target.value.trim();
     const pathname = window.location.pathname;
     const url =
@@ -22,6 +25,9 @@ export default class extends Controller {
       }
     })
       .then((response) => response.text())
-      .then((html) => Turbo.renderStreamMessage(html));
+      .then((html) => {
+        this.turboProgressBar.hide();
+        Turbo.renderStreamMessage(html);
+      });
   }
 }
