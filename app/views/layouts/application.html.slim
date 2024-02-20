@@ -14,7 +14,8 @@ html
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true, type: "module"
 
-  body
+  body.d-flex.flex-column.min-vh-100
     = render "partials/navbar"
     main.container.mt-5.pt-3
       = yield
+    = render "partials/footer"
