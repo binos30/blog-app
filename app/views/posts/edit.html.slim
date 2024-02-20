@@ -1,6 +1,8 @@
 - title "Edit"
+- set_meta_tags og: { title: meta_title("Edit"), description: "Editing post #{@post.title}" }
+- set_meta_tags twitter: { title: meta_title("Edit"), description: "Editing post #{@post.title}" }
 
-.row
+.row.mb-3
   .col-md-6.offset-md-3
     .card
       .card-body

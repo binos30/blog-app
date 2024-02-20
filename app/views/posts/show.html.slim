@@ -1,4 +1,6 @@
 - title "View"
+- set_meta_tags og: { title: meta_title("View"), description: "Viewing post #{@post.title}" }
+- set_meta_tags twitter: { title: meta_title("View"), description: "Viewing post #{@post.title}" }
 
 == render "partials/errors", errors: @feedback&.errors&.full_messages || []
 == render "partials/alert"
