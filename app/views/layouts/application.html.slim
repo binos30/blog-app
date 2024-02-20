@@ -3,6 +3,7 @@ html
   head
     title
       = content_for?(:title) ? yield(:title) : t(:title)
+    = display_meta_tags(default_meta_tags)
 
     meta http-equiv="X-UA-Compatible" content="IE=edge"
     meta charset="utf-8"

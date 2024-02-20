@@ -1,4 +1,7 @@
-- title "Posts" if current_page?(posts_path)
+- if current_page?(posts_path)
+  - title "Posts"
+  - set_meta_tags og: { title: meta_title("Posts"), description: "Lists of post" }
+  - set_meta_tags twitter: { title: meta_title("Posts"), description: "Lists of post" }
 
 == render "partials/alert"
 == render "partials/notice"

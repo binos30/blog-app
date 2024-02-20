@@ -153,6 +153,8 @@ GEM
       net-pop
       net-smtp
     marcel (1.0.2)
+    meta-tags (2.20.0)
+      actionpack (>= 6.0.0, < 7.2)
     mini_mime (1.1.5)
     minitest (5.22.2)
     mission_control-jobs (0.1.1)
@@ -374,6 +376,7 @@ DEPENDENCIES
   draper
   jbuilder
   jsbundling-rails
+  meta-tags
   mission_control-jobs
   pg (~> 1.1)
   prettier_print
