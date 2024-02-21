@@ -14,6 +14,12 @@ Install dependencies and setup database
 bin/setup
 ```
 
+Populate database with sample data
+
+```bash
+rake db:populate_sample_data
+```
+
 Start local web server
 
 ```bash

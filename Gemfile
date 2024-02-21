@@ -79,6 +79,9 @@ group :development, :test do
 
   # Testing Framework
   gem "rspec-rails"
+
+  # A library for generating fake data such as names, addresses, and phone numbers
+  gem "faker"
 end
 
 group :development do
