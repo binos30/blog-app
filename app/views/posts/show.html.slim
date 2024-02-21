@@ -26,7 +26,7 @@ div id="#{dom_id @post}"
       = link_to new_post_path, class: "btn btn-primary btn-sm me-1" do
         i.bi.bi-plus-lg.me-1
         | New post
-    - if post_author?(@post)
+    - if post_author?(@post.user_id)
       = link_to edit_post_path(@post), class: "btn btn-success btn-sm me-1" do
         i.bi.bi-pencil.me-1
         | Edit

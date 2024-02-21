@@ -2,7 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :correct_user, only: %i[edit update destroy]
+  before_action :check_user, only: %i[edit update destroy]
   before_action :set_post, only: %i[show edit update destroy]
 
   # Defines a helper method to access decorated instance variables.
@@ -82,9 +82,9 @@ class PostsController < ApplicationController
 
   private
 
-  def correct_user
-    @post = Post.find_by(id: params[:id], user_id: current_user.id)
-    return unless @post.nil?
+  def check_user
+    post = current_user.posts.find_by(id: params[:id])
+    return if post.present?
 
     redirect_to posts_url, warning: t(:not_authorized)
   end

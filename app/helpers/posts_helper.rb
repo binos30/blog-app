@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module PostsHelper
-  def post_author?(post)
-    post.user_id == current_user&.id
+  def post_author?(author_id)
+    author_id == current_user&.id
   end
 end

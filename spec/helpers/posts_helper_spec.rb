@@ -30,12 +30,12 @@ RSpec.describe PostsHelper do
   describe "#post_author?" do
     it "returns true if post author is equal to current user" do
       sign_in(user_john)
-      expect(helper.post_author?(post)).to be true
+      expect(helper.post_author?(post.user_id)).to be true
     end
 
     it "returns false if post author is not equal to current user" do
       sign_in(user_jane)
-      expect(helper.post_author?(post)).to be false
+      expect(helper.post_author?(post.user_id)).to be false
     end
   end
 end
