@@ -18,12 +18,21 @@ namespace :db do
     puts "#{User.all.size} users created"
 
     user = User.first
+    user2 = User.last
 
-    25.times do
+    15.times do
       Post.create!(
         title: Faker::Lorem.sentence,
         body: Faker::Lorem.paragraph_by_chars(number: 256),
         user:
+      )
+    end
+
+    10.times do
+      Post.create!(
+        title: Faker::Lorem.sentence,
+        body: Faker::Lorem.paragraph_by_chars(number: 256),
+        user: user2
       )
     end
 
