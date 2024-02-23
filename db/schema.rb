@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_08_023844) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_23_041237) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
@@ -32,9 +32,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_023844) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", null: false
+    t.string "slug", null: false
     t.index ["body"], name: "index_posts_on_body", opclass: :gin_trgm_ops, using: :gin
+    t.index ["slug"], name: "index_posts_on_slug", unique: true
     t.index ["status"], name: "index_posts_on_status"
-    t.index ["title"], name: "index_posts_on_title"
+    t.index ["title"], name: "index_posts_on_title", unique: true
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

@@ -10,7 +10,7 @@ RSpec.describe "posts/index" do
   let(:posts) do
     [
       Post.create!(title: "Title", body: "MyText", user:, status: :public),
-      Post.create!(title: "Title", body: "MyText", user:, status: :public)
+      Post.create!(title: "Title 2", body: "MyText", user:, status: :public)
     ]
   end
 

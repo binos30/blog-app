@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     mount MissionControl::Jobs::Engine, at: "/admin/jobs"
   end
 
-  resources :posts do
+  resources :posts, param: :slug do
     resources :feedbacks, only: :create
   end
 

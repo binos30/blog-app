@@ -8,7 +8,7 @@ class FeedbacksController < ApplicationController
 
   # POST /feedbacks
   def create # rubocop:disable Metrics/AbcSize
-    @post = Post.find(params[:post_id])
+    @post = Post.friendly.find_by!(slug: params[:post_slug])
     @feedback = @post.feedbacks.new(feedback_params.merge!(user: current_user))
 
     respond_to do |format|
@@ -23,7 +23,7 @@ class FeedbacksController < ApplicationController
       end
     end
   rescue ActiveRecord::RecordNotFound
-    logger.error "Post not found #{params[:post_id]}"
+    logger.error "Post not found #{params[:post_slug]}"
     redirect_back(fallback_location: posts_url)
   end
 
