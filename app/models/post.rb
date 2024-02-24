@@ -3,7 +3,7 @@
 class Post < ApplicationRecord
   include Sanitizable
   extend FriendlyId
-  friendly_id :title, use: :slugged
+  friendly_id :title
 
   enum status: { public: 0, private: 1, archived: 2 }, _default: :public, _suffix: true
 
@@ -47,6 +47,11 @@ class Post < ApplicationRecord
             where(user_id: author_id)
           end
         end
+
+  # Whether to generate a new slug.
+  def should_generate_new_friendly_id?
+    slug.blank? || title_changed?
+  end
 
   private
 

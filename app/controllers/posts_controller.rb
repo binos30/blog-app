@@ -49,9 +49,8 @@ class PostsController < ApplicationController
   end
 
   # PATCH/PUT /posts/1
-  def update # rubocop:disable Metrics/AbcSize
+  def update
     respond_to do |format|
-      @post.slug = nil if @post.title != post_params[:title]
       if @post.update(post_params)
         format.html do
           redirect_to post_url(@post),
@@ -84,7 +83,7 @@ class PostsController < ApplicationController
   private
 
   def check_user
-    post = current_user.posts.friendly.find_by!(slug: params[:slug])
+    post = current_user.posts.find_by(slug: params[:slug])
     return if post.present?
 
     redirect_to posts_url, warning: t(:not_authorized)
@@ -92,7 +91,7 @@ class PostsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = Post.friendly.find_by!(slug: params[:slug])
+    @post = Post.find(params[:slug])
   rescue ActiveRecord::RecordNotFound
     logger.error "Post not found #{params[:slug]}"
     redirect_back(fallback_location: posts_url)

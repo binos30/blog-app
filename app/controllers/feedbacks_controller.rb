@@ -8,7 +8,7 @@ class FeedbacksController < ApplicationController
 
   # POST /feedbacks
   def create # rubocop:disable Metrics/AbcSize
-    @post = Post.friendly.find_by!(slug: params[:post_slug])
+    @post = Post.find(params[:post_slug])
     @feedback = @post.feedbacks.new(feedback_params.merge!(user: current_user))
 
     respond_to do |format|

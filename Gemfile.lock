@@ -379,7 +379,7 @@ DEPENDENCIES
   dotenv-rails
   draper
   faker
-  friendly_id (~> 5.5.0)
+  friendly_id
   jbuilder
   jsbundling-rails
   meta-tags

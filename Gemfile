@@ -72,7 +72,7 @@ gem "meta-tags"
 
 # FriendlyId is the "Swiss Army bulldozer" of slugging and permalink plugins for Active Record.
 # It lets you create pretty URLs and work with human-friendly strings as if they were numeric ids
-gem "friendly_id", "~> 5.5.0"
+gem "friendly_id"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
