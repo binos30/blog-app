@@ -1,6 +1,6 @@
-- title "View"
-- set_meta_tags og: { title: meta_title("View"), description: "Viewing post #{@post.title}" }
-- set_meta_tags twitter: { title: meta_title("View"), description: "Viewing post #{@post.title}" }
+- title post.title
+- set_meta_tags og: { title: meta_title(post.title), description: truncate(post.body, length: 150) }
+- set_meta_tags twitter: { title: meta_title(post.title), description: truncate(post.body, length: 150) }
 
 == render "partials/errors", errors: @feedback&.errors&.full_messages || []
 == render "partials/alert"
@@ -31,7 +31,7 @@ div id="#{dom_id @post}"
         i.bi.bi-pencil.me-1
         | Edit
       = link_to post_path(@post),
-                data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?", turbo_method: :delete },
+                data: { turbo_confirm: "Are you sure?", turbo_method: :delete },
                 class: "btn btn-danger btn-sm" do
         i.bi.bi-trash.me-1
         | Delete
