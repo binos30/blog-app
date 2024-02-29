@@ -23,11 +23,12 @@ RUN apt-get update -qq && \
 
 # Install JavaScript dependencies
 ARG NODE_VERSION=20.11.0
-ARG YARN_VERSION=1.22.19
+ARG YARN_CLASSIC_VERSION=1.22.19
+ARG YARN_VERSION=4.1.0
 ENV PATH=/usr/local/node/bin:$PATH
 RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
     /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
-    npm install -g yarn@$YARN_VERSION && \
+    npm install -g yarn@$YARN_CLASSIC_VERSION && \
     rm -rf /tmp/node-build-master
 
 # Install application gems
@@ -38,7 +39,7 @@ RUN bundle install && \
 
 # Install node modules
 COPY package.json yarn.lock ./
-RUN yarn set version 4.0.2 && yarn install --immutable
+RUN yarn set version $YARN_VERSION && yarn install --immutable
 
 # Copy application code
 COPY . .
