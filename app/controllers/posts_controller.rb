@@ -15,6 +15,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
+    fresh_when(@post)
     @feedback = @post.feedbacks.build
     return if @post.public_status? || @post.user_id == current_user&.id
     redirect_to posts_url
@@ -37,8 +38,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         format.html do
-          redirect_to post_url(@post),
-                      notice: t("record.create", record: Post.name, name: @post.title)
+          redirect_to @post, notice: t("record.create", record: Post.name, name: @post.title)
         end
         format.json { render :show, status: :created, location: @post }
       else
@@ -53,8 +53,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.update(post_params)
         format.html do
-          redirect_to post_url(@post),
-                      notice: t("record.update", record: Post.name, name: @post.title)
+          redirect_to @post, notice: t("record.update", record: Post.name, name: @post.title)
         end
         format.json { render :show, status: :ok, location: @post }
       else

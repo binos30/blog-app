@@ -9,6 +9,7 @@
 
 div id="#{dom_id @post}"
   h2 = @post.title
+  / = time_tag @post.updated_at, "data-local": "time-ago"
   .d-flex.flex-row.align-items-center.mb-3
     .fst-italic.me-2 = post.author
     span.dot
@@ -19,7 +20,7 @@ div id="#{dom_id @post}"
       - else
         | Edited&nbsp;
         = post.updated_time_ago
-  p = sanitize(@post.body)
+  p = @post.body
 
   .mb-3
     - if user_signed_in?
