@@ -11,11 +11,11 @@ class PostsController < ApplicationController
   # GET /posts
   def index
     @posts = Post.includes([:user]).public_status(params[:search])
+    fresh_when(@posts)
   end
 
   # GET /posts/1
   def show
-    fresh_when(@post)
     @feedback = @post.feedbacks.build
     return if @post.public_status? || @post.user_id == current_user&.id
     redirect_to posts_url
