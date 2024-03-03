@@ -1,18 +1,19 @@
 = form_with(model: post) do |form|
+  == render "partials/errors", errors: post&.errors&.full_messages || []
   .row.mb-3
     .col
       = form.label :title, class: "form-label"
       = form.text_field :title, class: "form-control"
-      == render "partials/errors", errors: post.errors.full_messages_for(:title)
+      / == render "partials/errors", errors: post.errors.full_messages_for(:title)
   .row.mb-3
     .col
       = form.label :status, class: "form-label"
       = form.select :status, enum_for_select(Post, :status),
         {}, class: "form-select"
-      == render "partials/errors", errors: post.errors.full_messages_for(:status)
+      / == render "partials/errors", errors: post.errors.full_messages_for(:status)
   .row.mb-3
     .col
-      = form.label :body, class: "form-label"
-      = form.text_area :body, class: "form-control"
-      == render "partials/errors", errors: post.errors.full_messages_for(:body)
+      = form.label :content, class: "form-label"
+      = form.rich_text_area :content, class: "form-control"
+      / == render "partials/errors", errors: post.errors.full_messages_for(:content)
   = form.submit class: "btn btn-primary btn-sm"

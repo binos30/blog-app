@@ -4,8 +4,8 @@
     .card-body
       h5.card-title
         = link_to post.title, post, class: "stretched-link", data: { turbo_frame: "_top" }
-      p.card-text
-        = truncate(post.body, length: 200)
+      .card-text.line-clamp
+        = post.content
     .card-footer
       - if current_page?(users_posts_path)
         small.text-muted

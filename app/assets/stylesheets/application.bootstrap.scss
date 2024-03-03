@@ -1,3 +1,4 @@
+@import "actiontext.css";
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons";
 
@@ -20,4 +21,11 @@ body {
 
 .turbo-progress-bar {
   background: #62a9fa;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; // number of lines
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Post < ApplicationRecord
-  include Sanitizable
   extend FriendlyId
   friendly_id :title
 
@@ -10,6 +9,8 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :feedbacks, dependent: :destroy
 
+  has_rich_text :content
+
   validates :title,
             presence: true,
             uniqueness: {
@@ -17,32 +18,31 @@ class Post < ApplicationRecord
             },
             format: %r{\A[a-zA-Z0-9\s\-\[\]/*&;,._:()!?ñÑ]*\z}
   validates :status, presence: true, inclusion: { in: statuses.keys }
-  validates :body, presence: true, length: { minimum: 5 }
-
-  before_save :sanitize_fields
+  validates :content, presence: true
 
   scope :public_status,
         ->(search = "") do
           search = search&.strip
 
           if search.present?
-            where(status: :public).where(
-              "title ILIKE :search OR body ILIKE :search",
-              search: "%#{search}%"
-            )
+            joins(:rich_text_content)
+              .where(status: :public)
+              .where("to_tsvector('english', title) @@ websearch_to_tsquery(?)", search)
+              .or(merge(ActionText::RichText.with_body_containing(search)))
           else
             where(status: :public)
           end
         end
+
   scope :by_author,
         ->(author_id, search = "") do
           search = search&.strip
 
           if search.present?
-            where(user_id: author_id).where(
-              "title ILIKE :search OR body ILIKE :search",
-              search: "%#{search}%"
-            )
+            joins(:rich_text_content)
+              .where(user_id: author_id)
+              .where("to_tsvector('english', title) @@ websearch_to_tsquery(?)", search)
+              .or(merge(ActionText::RichText.with_body_containing(search)))
           else
             where(user_id: author_id)
           end
@@ -51,11 +51,5 @@ class Post < ApplicationRecord
   # Whether to generate a new slug.
   def should_generate_new_friendly_id?
     slug.blank? || title_changed?
-  end
-
-  private
-
-  def sanitize_fields
-    self.body = sanitize(body, scrubber: HtmlScrubbers::WysiwygScrubber.new)
   end
 end

@@ -23,10 +23,10 @@ RSpec.describe "/posts" do
   # Post. As you add validations to Post, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    { user_id: user.id, title: "MyPostTitle", body: "MyPostBody", status: :public }
+    { user_id: user.id, title: "MyPostTitle", content: "MyPostBody", status: :public }
   end
 
-  let(:invalid_attributes) { { title: "<MyPostTitle>", body: "MyPostBody" } }
+  let(:invalid_attributes) { { title: "<MyPostTitle>", content: "MyPostBody" } }
 
   before { sign_in(user) }
 
@@ -92,7 +92,7 @@ end.not_to change(
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) { { title: "MyPostTitle2", body: "MyPostBody2" } }
+      let(:new_attributes) { { title: "MyPostTitle2", content: "MyPostBody2" } }
 
       it "updates the requested post" do
         post = Post.create! valid_attributes

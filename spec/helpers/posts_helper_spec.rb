@@ -23,7 +23,7 @@ RSpec.describe PostsHelper do
 
   let(:post) do
     Post.create!(
-      { user_id: user_john.id, title: "MyPostTitle", body: "MyPostBody", status: :public }
+      { user_id: user_john.id, title: "MyPostTitle", content: "MyPostBody", status: :public }
     )
   end
 

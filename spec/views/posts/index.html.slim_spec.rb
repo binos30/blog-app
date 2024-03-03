@@ -9,8 +9,8 @@ RSpec.describe "posts/index" do
 
   let(:posts) do
     [
-      Post.create!(title: "Title", body: "MyText", user:, status: :public),
-      Post.create!(title: "Title 2", body: "MyText", user:, status: :public)
+      Post.create!(title: "Title", content: "MyText", user:, status: :public),
+      Post.create!(title: "Title 2", content: "MyText", user:, status: :public)
     ]
   end
 
@@ -28,8 +28,8 @@ RSpec.describe "posts/index" do
   it "renders a list of posts" do
     render
     title_selector = "h5"
-    body_selector = "p"
+    content_selector = "div.card-text"
     assert_select title_selector, text: Regexp.new("Title".to_s), count: 2
-    assert_select body_selector, text: Regexp.new("MyText".to_s), count: 2
+    assert_select content_selector, text: Regexp.new("MyText".to_s), count: 2
   end
 end

@@ -1,6 +1,6 @@
 - title post.title
-- set_meta_tags og: { title: meta_title(post.title), description: truncate(post.body, length: 150) }
-- set_meta_tags twitter: { title: meta_title(post.title), description: truncate(post.body, length: 150) }
+- set_meta_tags og: { title: meta_title(post.title), description: truncate(strip_tags(post.content), length: 150)}
+- set_meta_tags twitter: { title: meta_title(post.title), description: truncate(strip_tags(post.content), length: 150)}
 
 == render "partials/errors", errors: @feedback&.errors&.full_messages || []
 == render "partials/alert"
@@ -20,7 +20,7 @@ div id="#{dom_id @post}"
       - else
         | Edited&nbsp;
         = post.updated_time_ago
-  p = @post.body
+  .mb-3 = @post.content
 
   .mb-3
     - if user_signed_in?

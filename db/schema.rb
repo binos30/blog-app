@@ -10,10 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_23_041237) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_03_073330) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
   enable_extension "plpgsql"
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "plain_text_body", null: false
+    t.index "to_tsvector('english'::regconfig, plain_text_body)", name: "tsvector_body_idx", using: :gin
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
 
   create_table "feedbacks", force: :cascade do |t|
     t.text "body", null: false
@@ -27,16 +67,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_23_041237) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title", default: "", null: false
-    t.text "body", default: "", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", null: false
     t.string "slug", null: false
-    t.index ["body"], name: "index_posts_on_body", opclass: :gin_trgm_ops, using: :gin
+    t.index "to_tsvector('english'::regconfig, (title)::text)", name: "tsvector_post_title_idx", unique: true
     t.index ["slug"], name: "index_posts_on_slug", unique: true
     t.index ["status"], name: "index_posts_on_status"
-    t.index ["title"], name: "index_posts_on_title", unique: true
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -167,6 +205,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_23_041237) do
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "feedbacks", "posts"
   add_foreign_key "feedbacks", "users"
   add_foreign_key "posts", "users"

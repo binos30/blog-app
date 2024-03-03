@@ -10,7 +10,7 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.includes([:user]).public_status(params[:search])
+    @posts = Post.includes(%i[user rich_text_content]).public_status(params[:search])
     fresh_when(@posts)
   end
 
@@ -46,10 +46,13 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+  rescue ActiveRecord::RecordNotUnique => e
+    @post.errors.add(:base, e)
+    render :new, status: :unprocessable_entity
   end
 
   # PATCH/PUT /posts/1
-  def update
+  def update # rubocop:disable Metrics/AbcSize
     respond_to do |format|
       if @post.update(post_params)
         format.html do
@@ -61,6 +64,9 @@ class PostsController < ApplicationController
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
+  rescue ActiveRecord::RecordNotUnique => e
+    @post.errors.add(:base, e)
+    render :edit, status: :unprocessable_entity
   end
 
   # DELETE /posts/1
@@ -76,7 +82,8 @@ class PostsController < ApplicationController
   end
 
   def by_author
-    @posts = Post.by_author(current_user.id, params[:search])
+    @posts = Post.includes([:rich_text_content]).by_author(current_user.id, params[:search])
+    fresh_when(@posts)
   end
 
   private
@@ -98,6 +105,9 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:title, :body, :status).each_value { |value| value.try(:strip!) }
+    params
+      .require(:post)
+      .permit(:title, :content, :status)
+      .each_value { |value| value.try(:strip!) }
   end
 end

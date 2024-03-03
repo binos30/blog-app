@@ -2,5 +2,5 @@
   .alert.alert-danger.alert-dismissible.fade.show role="alert"
     ul.mb-0
       - errors.each do |error|
-        li = sanitize(error, tags: %w[em strong])
+        li = error
     button.btn-close type="button" data-bs-dismiss="alert" aria-label="Close"
