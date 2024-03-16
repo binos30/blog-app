@@ -23,7 +23,7 @@ namespace :db do
     15.times do
       Post.create!(
         title: Faker::Lorem.sentence,
-        body: Faker::Lorem.paragraph_by_chars(number: 256),
+        content: Faker::Lorem.paragraph_by_chars(number: 256),
         user:
       )
     end
@@ -31,7 +31,7 @@ namespace :db do
     10.times do
       Post.create!(
         title: Faker::Lorem.sentence,
-        body: Faker::Lorem.paragraph_by_chars(number: 256),
+        content: Faker::Lorem.paragraph_by_chars(number: 256),
         user: user2
       )
     end
