@@ -23,4 +23,4 @@ production:
   <<: *default
   database: blog_app_production
   advisory_locks: false
-  prepared_statements: true
+  prepared_statements: false
