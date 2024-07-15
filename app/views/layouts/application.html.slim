@@ -1,6 +1,8 @@
 doctype html
 html
   head
+    = render "partials/google_tag"
+
     title
       = content_for?(:title) ? yield(:title) : t(:title)
     = display_meta_tags(default_meta_tags)
@@ -12,17 +14,6 @@ html
 
     = csrf_meta_tags
     = csp_meta_tag
-
-    / Google tag (gtag.js)
-    script[async src="https://www.googletagmanager.com/gtag/js?id=G-2XPSL3ED5M"]
-    javascript:
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-2XPSL3ED5M");
 
     = stylesheet_link_tag "actiontext", "data-turbo-track": "reload"
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
