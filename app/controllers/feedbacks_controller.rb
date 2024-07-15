@@ -8,14 +8,12 @@ class FeedbacksController < ApplicationController
 
   # POST /feedbacks
   def create # rubocop:disable Metrics/AbcSize
-    @post = Post.find(params[:post_slug])
+    @post = Post.find_by_friendly_id(params[:post_slug]) # rubocop:disable Rails/DynamicFindBy
     @feedback = @post.feedbacks.new(feedback_params.merge!(user: current_user))
 
     respond_to do |format|
       if @feedback.save
-        format.html do
-          redirect_to @post, notice: t("record.create", record: Feedback.name, name: "")
-        end
+        format.html { redirect_to @post, notice: t("record.create", record: Feedback.name, name: "") }
         format.json { render "posts/show", status: :created, location: @post }
       else
         format.html { render "posts/show", status: :unprocessable_entity }

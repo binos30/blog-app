@@ -37,9 +37,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html do
-          redirect_to @post, notice: t("record.create", record: Post.name, name: @post.title)
-        end
+        format.html { redirect_to @post, notice: t("record.create", record: Post.name, name: @post.title) }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -55,9 +53,7 @@ class PostsController < ApplicationController
   def update # rubocop:disable Metrics/AbcSize
     respond_to do |format|
       if @post.update(post_params)
-        format.html do
-          redirect_to @post, notice: t("record.update", record: Post.name, name: @post.title)
-        end
+        format.html { redirect_to @post, notice: t("record.update", record: Post.name, name: @post.title) }
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -74,9 +70,7 @@ class PostsController < ApplicationController
     @post.destroy!
 
     respond_to do |format|
-      format.html do
-        redirect_to posts_url, notice: t("record.delete", record: Post.name, name: @post.title)
-      end
+      format.html { redirect_to posts_url, notice: t("record.delete", record: Post.name, name: @post.title) }
       format.json { head :no_content }
     end
   end
@@ -97,7 +91,7 @@ class PostsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = Post.find(params[:slug])
+    @post = Post.find_by_friendly_id(params[:slug]) # rubocop:disable Rails/DynamicFindBy
   rescue ActiveRecord::RecordNotFound
     logger.error "Post not found #{params[:slug]}"
     redirect_back(fallback_location: posts_url)
@@ -105,9 +99,6 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params
-      .require(:post)
-      .permit(:title, :content, :status)
-      .each_value { |value| value.try(:strip!) }
+    params.require(:post).permit(:title, :content, :status).each_value { |value| value.try(:strip!) }
   end
 end
