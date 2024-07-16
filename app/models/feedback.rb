@@ -6,6 +6,8 @@ class Feedback < ApplicationRecord
   belongs_to :post
   belongs_to :user
 
+  broadcasts_refreshes_to :post
+
   validate :validate_body
 
   before_save :sanitize_fields
