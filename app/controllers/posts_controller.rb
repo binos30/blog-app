@@ -83,9 +83,9 @@ class PostsController < ApplicationController
   private
 
   def check_user
-    post = current_user.posts.find_by(slug: params[:slug])
-    return if post.present?
-
+    current_user.posts.find_by_friendly_id(params[:slug]) # rubocop:disable Rails/DynamicFindBy
+  rescue ActiveRecord::RecordNotFound
+    logger.error "User Post not found #{params[:slug]}"
     redirect_to posts_url, warning: t(:not_authorized)
   end
 
