@@ -1,3 +1,5 @@
-<%= turbo_stream.update "posts" do %>
-  <%= render "content" %>
+<%= turbo_stream.append :posts do %>
+  <%= render posts %>
 <% end %>
+
+<%= render "turbo_stream_replace_pagination" %>

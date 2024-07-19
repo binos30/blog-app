@@ -3,9 +3,7 @@
 require "rails_helper"
 
 RSpec.describe "posts/index" do
-  let(:user) do
-    User.create!(email: "jd@gmail.com", password: "pass123", first_name: "John", last_name: "Doe")
-  end
+  let(:user) { User.create!(email: "jd@gmail.com", password: "pass123", first_name: "John", last_name: "Doe") }
 
   let(:posts) do
     [
@@ -15,7 +13,7 @@ RSpec.describe "posts/index" do
   end
 
   before do
-    assign(:posts, posts)
+    @pagy, @posts = pagy_array(posts)
 
     # Turns off the verifying of partial doubles for the duration of the block,
     # this is useful in situations where methods are defined at run time and you wish

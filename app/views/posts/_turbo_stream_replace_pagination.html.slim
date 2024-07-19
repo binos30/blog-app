@@ -1,0 +1,6 @@
+= turbo_stream.replace :pagination do
+  - if @pagy.next.present?
+    - src ||= posts_path(format: :turbo_stream, page: @pagy.next, search: params[:search])
+    = turbo_frame_tag :pagination, loading: :lazy, src:
+  - else
+    = turbo_frame_tag :pagination

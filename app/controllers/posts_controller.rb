@@ -6,19 +6,25 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   # Defines a helper method to access decorated instance variables.
-  decorates_assigned :posts, :post
+  decorates_assigned :posts, :post, :feedbacks
 
   # GET /posts
   def index
-    @posts = Post.includes(%i[user rich_text_content]).public_status(params[:search])
-    fresh_when(@posts)
+    posts = Post.includes(%i[user rich_text_content]).public_status(params[:search]).order(updated_at: :desc)
+    @pagy, @posts = pagy_countless(posts, limit: 10)
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   # GET /posts/1
   def show
+    redirect_to posts_url and return if !@post.public_status? && @post.user_id != current_user&.id
+    feedbacks = @post.feedbacks.includes([:user]).order(created_at: :desc)
+    @pagy, @feedbacks = pagy_countless(feedbacks, limit: 10)
     @feedback = @post.feedbacks.build
-    return if @post.public_status? || @post.user_id == current_user&.id
-    redirect_to posts_url
   end
 
   # GET /posts/new
@@ -76,8 +82,14 @@ class PostsController < ApplicationController
   end
 
   def by_author
-    @posts = Post.includes([:rich_text_content]).by_author(current_user.id, params[:search])
-    fresh_when(@posts)
+    posts =
+      Post.includes([:rich_text_content]).by_author(current_user.id, params[:search]).order(updated_at: :desc)
+    @pagy, @posts = pagy_countless(posts, limit: 10)
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   private

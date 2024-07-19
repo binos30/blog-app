@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   end
 
   resources :posts, param: :slug do
-    resources :feedbacks, only: :create
+    resources :feedbacks, only: %i[index create]
   end
 
   get "/users/posts", to: "posts#by_author"

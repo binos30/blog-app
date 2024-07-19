@@ -1,0 +1,10 @@
+<%= turbo_stream.append "post-feedbacks" do %>
+  <%= render feedbacks %>
+<% end %>
+
+<%= turbo_stream.replace :pagination do %>
+  <% if @pagy.next.present? %>
+    <%= turbo_frame_tag :pagination, loading: :lazy,
+      src: post_feedbacks_path(@post, format: :turbo_stream, page: @pagy.next) %>
+  <% end %>
+<% end %>

@@ -9,5 +9,18 @@
       i.bi.bi-plus-lg.me-1
       | New Post
 
-= turbo_frame_tag "posts" do
-  == render "content"
+== render "filter", path: users_posts_path
+
+= turbo_frame_tag :posts, "data-turbo-action": "advance",
+  class: "row row-cols-1 row-cols-md-3 g-4 mb-3" do
+  - if @posts.any?
+    = render posts
+  - else
+    .text-center.w-100
+      h4.mt-3
+        | No posts found.
+
+  = render "turbo_stream_replace_pagination",
+    src: users_posts_path(format: :turbo_stream, page: @pagy.next, search: params[:search])
+
+= turbo_frame_tag :pagination

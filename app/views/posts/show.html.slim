@@ -41,11 +41,14 @@ div id="#{dom_id @post}"
   =< link_to "Back to posts", posts_path
 
   h2.mt-3 = pluralize(format_number_to_human(@post.feedbacks.count), "feedback")
+  == render "partials/errors", errors: @feedback&.errors&.full_messages || []
+  div[data-turbo-permanent]
+    == render "feedbacks/form"
   - if @post.feedbacks.count.positive?
     .d-flex.row.mb-3
       .d-flex.flex-column.col-md-8
         #post-feedbacks.bg-white.px-4.pt-2.pb-4.rounded-3
-          = render @post.feedbacks.includes([:user]).order(created_at: :asc).decorate
-  == render "partials/errors", errors: @feedback&.errors&.full_messages || []
-  div[data-turbo-permanent]
-    == render "feedbacks/form"
+          = render feedbacks
+        - if @pagy.next.present?
+          = turbo_frame_tag :pagination, loading: :lazy,
+            src: post_feedbacks_path(@post, format: :turbo_stream, page: @pagy.next)

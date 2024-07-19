@@ -19,8 +19,6 @@ class Feedback < ApplicationRecord
 
   def validate_body
     errors.add(:base, "Feedback can't be blank") if body.blank?
-    return if body.length >= 5
-    errors.add(:base, "Feedback is too short (minimum is 5 characters)")
   end
 
   def sanitize_fields

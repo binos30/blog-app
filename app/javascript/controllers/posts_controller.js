@@ -5,7 +5,7 @@ import { debouncePromise } from "../utils/debouncePromise";
 // Connects to data-controller="posts"
 export default class extends Controller {
   initialize() {
-    this.search = debouncePromise(this.search.bind(this));
+    this.submitFilter = debouncePromise(this.submitFilter.bind(this));
     this.turboProgressBar = new TurboProgressBar();
   }
 
@@ -13,8 +13,7 @@ export default class extends Controller {
     this.turboProgressBar.show();
     const value = event.target.value.trim();
     const pathname = window.location.pathname;
-    const url =
-      pathname === "/users/posts" ? `/users/posts?search=${value}` : `/posts?search=${value}`;
+    const url = pathname === "/users/posts" ? `/users/posts?search=${value}` : `/posts?search=${value}`;
 
     fetch(url, {
       method: "GET",
@@ -29,5 +28,9 @@ export default class extends Controller {
         this.turboProgressBar.hide();
         Turbo.renderStreamMessage(html);
       });
+  }
+
+  submitFilter() {
+    this.element.requestSubmit();
   }
 }
