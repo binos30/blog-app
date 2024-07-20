@@ -39,7 +39,7 @@ module ApplicationHelper
     )
   end
 
-  def default_meta_tags
+  def default_meta_tags # rubocop:disable Metrics/MethodLength
     {
       reverse: true,
       author: "Venus Lumanglas",
@@ -49,7 +49,12 @@ module ApplicationHelper
       noindex: !Rails.env.production?,
       icon: [
         { href: image_url("logo.svg") },
-        { href: image_url("logo.svg"), rel: "apple-touch-icon", sizes: "180x180", type: "image/svg+xml" }
+        {
+          href: image_url("logo.svg"),
+          rel: "apple-touch-icon",
+          sizes: "180x180",
+          type: "image/svg+xml"
+        }
       ],
       og: {
         title: t(:title),

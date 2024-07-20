@@ -42,7 +42,8 @@ class User < ApplicationRecord
   def new_and_old_password_must_be_different
     return if changed.exclude?("encrypted_password")
 
-    password_is_same = Devise::Encryptor.compare(User, encrypted_password_was, password)
+    password_is_same =
+      Devise::Encryptor.compare(User, encrypted_password_was, password)
 
     return unless password_is_same
     errors.add(:base, I18n.t("errors.messages.old_password_not_allowed"))

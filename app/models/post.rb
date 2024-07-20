@@ -4,7 +4,13 @@ class Post < ApplicationRecord
   extend FriendlyId
   friendly_id :title
 
-  enum status: { public: 0, private: 1, archived: 2 }, _default: :public, _suffix: true
+  enum status: {
+         public: 0,
+         private: 1,
+         archived: 2
+       },
+       _default: :public,
+       _suffix: true
 
   belongs_to :user
   has_many :feedbacks, dependent: :destroy
@@ -29,7 +35,10 @@ class Post < ApplicationRecord
           if search.present?
             joins(:rich_text_content)
               .where(status: :public)
-              .where("to_tsvector('english', title) @@ websearch_to_tsquery(?)", search)
+              .where(
+                "to_tsvector('english', title) @@ websearch_to_tsquery(?)",
+                search
+              )
               .or(merge(ActionText::RichText.with_body_containing(search)))
           else
             where(status: :public)
@@ -43,7 +52,10 @@ class Post < ApplicationRecord
           if search.present?
             joins(:rich_text_content)
               .where(user_id: author_id)
-              .where("to_tsvector('english', title) @@ websearch_to_tsquery(?)", search)
+              .where(
+                "to_tsvector('english', title) @@ websearch_to_tsquery(?)",
+                search
+              )
               .or(merge(ActionText::RichText.with_body_containing(search)))
           else
             where(user_id: author_id)

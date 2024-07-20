@@ -3,7 +3,9 @@
 require "rails_helper"
 
 RSpec.describe "posts/new" do
-  before { assign(:post, Post.new(title: "MyString", content: "MyText", user: nil)) }
+  before do
+    assign(:post, Post.new(title: "MyString", content: "MyText", user: nil))
+  end
 
   it "renders new post form" do
     render

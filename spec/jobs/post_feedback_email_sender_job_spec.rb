@@ -7,7 +7,12 @@ RSpec.describe PostFeedbackEmailSenderJob do
     subject(:job) { described_class.perform_later(feedback) }
 
     let(:user_john) do
-      User.create!(email: "jd@gmail.com", password: "pass123", first_name: "John", last_name: "Doe")
+      User.create!(
+        email: "jd@gmail.com",
+        password: "pass123",
+        first_name: "John",
+        last_name: "Doe"
+      )
     end
 
     let(:user_jane) do
@@ -19,13 +24,24 @@ RSpec.describe PostFeedbackEmailSenderJob do
       )
     end
 
-    let(:post) { Post.create!(title: "Title", content: "MyText", user: user_john, status: :public) }
+    let(:post) do
+      Post.create!(
+        title: "Title",
+        content: "MyText",
+        user: user_john,
+        status: :public
+      )
+    end
 
-    let(:feedback) { Feedback.create!(post:, user: user_jane, body: "MyFeedbackBody") }
+    let(:feedback) do
+      Feedback.create!(post:, user: user_jane, body: "MyFeedbackBody")
+    end
 
     it "queues the job" do
       ActiveJob::Base.queue_adapter = :test
-      expect { job }.to have_enqueued_job(described_class).with(feedback).on_queue("test_default")
+      expect { job }.to have_enqueued_job(described_class).with(
+        feedback
+      ).on_queue("test_default")
     end
   end
 end

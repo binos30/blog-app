@@ -4,10 +4,17 @@ require "rails_helper"
 
 RSpec.describe "posts/edit" do
   let(:user) do
-    User.create!(email: "jd@gmail.com", password: "pass123", first_name: "John", last_name: "Doe")
+    User.create!(
+      email: "jd@gmail.com",
+      password: "pass123",
+      first_name: "John",
+      last_name: "Doe"
+    )
   end
 
-  let(:post) { Post.create!(title: "MyString", content: "MyText", user:, status: :public) }
+  let(:post) do
+    Post.create!(title: "MyString", content: "MyText", user:, status: :public)
+  end
 
   before { assign(:post, post) }
 

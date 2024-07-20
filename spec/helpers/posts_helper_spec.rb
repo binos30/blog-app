@@ -14,16 +14,31 @@ require "rails_helper"
 # end
 RSpec.describe PostsHelper do
   let(:user_john) do
-    User.create!(email: "jd@gmail.com", password: "pass123", first_name: "John", last_name: "Doe")
+    User.create!(
+      email: "jd@gmail.com",
+      password: "pass123",
+      first_name: "John",
+      last_name: "Doe"
+    )
   end
 
   let(:user_jane) do
-    User.create!(email: "jdoe@gmail.com", password: "pass123", first_name: "Jane", last_name: "Doe")
+    User.create!(
+      email: "jdoe@gmail.com",
+      password: "pass123",
+      first_name: "Jane",
+      last_name: "Doe"
+    )
   end
 
   let(:post) do
     Post.create!(
-      { user_id: user_john.id, title: "MyPostTitle", content: "MyPostBody", status: :public }
+      {
+        user_id: user_john.id,
+        title: "MyPostTitle",
+        content: "MyPostBody",
+        status: :public
+      }
     )
   end
 

@@ -10,7 +10,11 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    posts = Post.includes(%i[user rich_text_content]).public_status(params[:search]).order(updated_at: :desc)
+    posts =
+      Post
+        .includes(%i[user rich_text_content])
+        .public_status(params[:search])
+        .order(updated_at: :desc)
     @pagy, @posts = pagy_countless(posts, limit: 10)
 
     respond_to do |format|
@@ -21,7 +25,9 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
-    redirect_to posts_url and return if !@post.public_status? && @post.user_id != current_user&.id
+    if !@post.public_status? && @post.user_id != current_user&.id
+      redirect_to posts_url and return
+    end
     feedbacks = @post.feedbacks.includes([:user]).order(created_at: :desc)
     @pagy, @feedbacks = pagy_countless(feedbacks, limit: 10)
     @feedback = @post.feedbacks.build
@@ -43,7 +49,11 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: t("record.create", record: Post.name, name: @post.title) }
+        format.html do
+          redirect_to @post,
+                      notice:
+                        t("record.create", record: Post.name, name: @post.title)
+        end
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -59,7 +69,11 @@ class PostsController < ApplicationController
   def update # rubocop:disable Metrics/AbcSize
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: t("record.update", record: Post.name, name: @post.title) }
+        format.html do
+          redirect_to @post,
+                      notice:
+                        t("record.update", record: Post.name, name: @post.title)
+        end
         format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -76,14 +90,21 @@ class PostsController < ApplicationController
     @post.destroy!
 
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: t("record.delete", record: Post.name, name: @post.title) }
+      format.html do
+        redirect_to posts_url,
+                    notice:
+                      t("record.delete", record: Post.name, name: @post.title)
+      end
       format.json { head :no_content }
     end
   end
 
   def by_author
     posts =
-      Post.includes([:rich_text_content]).by_author(current_user.id, params[:search]).order(updated_at: :desc)
+      Post
+        .includes([:rich_text_content])
+        .by_author(current_user.id, params[:search])
+        .order(updated_at: :desc)
     @pagy, @posts = pagy_countless(posts, limit: 10)
 
     respond_to do |format|
@@ -111,6 +132,9 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:title, :content, :status).each_value { |value| value.try(:strip!) }
+    params
+      .require(:post)
+      .permit(:title, :content, :status)
+      .each_value { |value| value.try(:strip!) }
   end
 end

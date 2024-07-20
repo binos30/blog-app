@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (9.0.1)
+# Pagy initializer file (9.0.2)
 # Customize only what you really need and notice that the core Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
 # Pagy Variables
 # See https://ddnexus.github.io/pagy/docs/api/pagy#variables
-# You can set any pagy variable as a Pagy::DEFAULT. They can also be overridden per instance by just passing them to
-# Pagy.new|Pagy::Countless.new|Pagy::Calendar::*.new or any of the #pagy* controller methods
+# You can set any pagy variable as a Pagy::DEFAULT. They can also be overridden per instance by just passing them
+# to Pagy.new|Pagy::Countless.new|Pagy::Calendar::*.new or any of the #pagy* controller methods
 # Here are the few that make more sense as DEFAULTs:
 # Pagy::DEFAULT[:limit]       = 20                    # default
 # Pagy::DEFAULT[:size]        = 7                     # default
@@ -74,6 +74,10 @@ require "pagy/extras/countless"
 #                            limit: 'Page-Items',
 #                            count: 'Total-Count',
 #                            pages: 'Total-Pages' }     # default
+
+# Keyset extra: Paginate with the Pagy keyset pagination technique
+# See http://ddnexus.github.io/pagy/extras/keyset
+# require 'pagy/extras/keyset'
 
 # Meilisearch extra: Paginate `Meilisearch` result objects
 # See https://ddnexus.github.io/pagy/docs/extras/meilisearch

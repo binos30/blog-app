@@ -4,10 +4,22 @@ require "rails_helper"
 
 RSpec.describe PostDecorator do
   let(:user) do
-    User.create!(email: "jd@gmail.com", password: "pass123", first_name: "John", last_name: "Doe")
+    User.create!(
+      email: "jd@gmail.com",
+      password: "pass123",
+      first_name: "John",
+      last_name: "Doe"
+    )
   end
 
-  let(:post) { Post.create!(title: "Title", content: "MyText", user:, status: :public).decorate }
+  let(:post) do
+    Post.create!(
+      title: "Title",
+      content: "MyText",
+      user:,
+      status: :public
+    ).decorate
+  end
 
   it "returns the author" do
     expect(post.author).to eq("John Doe")

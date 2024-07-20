@@ -180,20 +180,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hotwired/turbo-rails@npm:^8.0.4":
-  version: 8.0.4
-  resolution: "@hotwired/turbo-rails@npm:8.0.4"
+"@hotwired/turbo-rails@npm:^8.0.5":
+  version: 8.0.5
+  resolution: "@hotwired/turbo-rails@npm:8.0.5"
   dependencies:
-    "@hotwired/turbo": "npm:^8.0.4"
+    "@hotwired/turbo": "npm:^8.0.5"
     "@rails/actioncable": "npm:^7.0"
-  checksum: 10c0/c35fdcc79876f3ceaed7100f2e6965bcf9aa647309dce7a6ed685e880ffc1ac475299e00538ecc926addfa4023704c9bd1ea37e70fbef3a77697f7f01d4e344f
+  checksum: 10c0/eed67bcf4258500897772d38831bce5954a851e457a584e377518e10c5b09bab81eaa2902f5e689bdb60f4433ef9765c2cd6cd6760033e39b962fdc2d4fc08aa
   languageName: node
   linkType: hard
 
-"@hotwired/turbo@npm:^8.0.4":
-  version: 8.0.4
-  resolution: "@hotwired/turbo@npm:8.0.4"
-  checksum: 10c0/3e7174d550adf3b9a0a4c45ff5d1b71d47c20de6ae01f646fbbaf8ed447677bd1a5fb6dbd46e95b14645a663fe58a6187c1c6d2a688b0981b5cf437379c5e00a
+"@hotwired/turbo@npm:^8.0.5":
+  version: 8.0.5
+  resolution: "@hotwired/turbo@npm:8.0.5"
+  checksum: 10c0/fc8d1bcb2707c601f98c47d7598b538faaa894f0b16a00e88de0d9d514ebc105631261381acef1ba5c1fa2b8c638a1f4ff2583c881f8da520afa42931884bd88
   languageName: node
   linkType: hard
 
@@ -271,15 +271,6 @@ __metadata:
   version: 2.11.8
   resolution: "@popperjs/core@npm:2.11.8"
   checksum: 10c0/4681e682abc006d25eb380d0cf3efc7557043f53b6aea7a5057d0d1e7df849a00e281cd8ea79c902a35a414d7919621fc2ba293ecec05f413598e0b23d5a1e63
-  languageName: node
-  linkType: hard
-
-"@prettier/plugin-ruby@npm:^4.0.4":
-  version: 4.0.4
-  resolution: "@prettier/plugin-ruby@npm:4.0.4"
-  peerDependencies:
-    prettier: ^3.0.0
-  checksum: 10c0/7567d7f87fe807f7a90fb4eba7a91d25a1843e19de09289412ba0420e25fadea9840085b495c54212249bb418fcd146d53b105c0e4e57990c5235326bd7c6b01
   languageName: node
   linkType: hard
 
@@ -395,22 +386,21 @@ __metadata:
   resolution: "app@workspace:."
   dependencies:
     "@hotwired/stimulus": "npm:^3.2.2"
-    "@hotwired/turbo-rails": "npm:^8.0.4"
+    "@hotwired/turbo-rails": "npm:^8.0.5"
     "@popperjs/core": "npm:^2.11.8"
-    "@prettier/plugin-ruby": "npm:^4.0.4"
     "@rails/actiontext": "npm:7.1.3-4"
     autoprefixer: "npm:^10.4.19"
     bootstrap: "npm:^5.3.3"
     bootstrap-icons: "npm:^1.11.3"
     esbuild: "npm:^0.23.0"
-    husky: "npm:^9.0.11"
+    husky: "npm:^9.1.1"
     lint-staged: "npm:^15.2.7"
     nodemon: "npm:^3.1.4"
     postcss: "npm:^8.4.39"
     postcss-cli: "npm:^11.0.0"
     prettier: "npm:^3.3.3"
     sass: "npm:1.77.6"
-    trix: "npm:^2.1.2"
+    trix: "npm:^2.1.3"
   languageName: unknown
   linkType: soft
 
@@ -1058,12 +1048,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:^9.0.11":
-  version: 9.0.11
-  resolution: "husky@npm:9.0.11"
+"husky@npm:^9.1.1":
+  version: 9.1.1
+  resolution: "husky@npm:9.1.1"
   bin:
-    husky: bin.mjs
-  checksum: 10c0/2c787dcf74a837fc9a4fea7da907509d4bd9a289f4ea10ecc9d86279e4d4542b0f5f6443a619bccae19e265f2677172cc2b86aae5c932a35a330cc227d914605
+    husky: bin.js
+  checksum: 10c0/56394f5a08201badece23a8599bd76fe8c41e4510a956022fe54897645900c5c5a96a740ffb0604e99e808dffc3714bae982f1cbda4a069082cc713414f17ad3
   languageName: node
   linkType: hard
 
@@ -2119,10 +2109,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"trix@npm:^2.1.2":
-  version: 2.1.2
-  resolution: "trix@npm:2.1.2"
-  checksum: 10c0/707f89641b5fc778983531f6375ce449224af92f365059b790e0ad109421d6d8a61f1bc939a66ccd29ddff8c996498d49ac5932573ce37481cd9f7ac5a05a9d8
+"trix@npm:^2.1.3":
+  version: 2.1.3
+  resolution: "trix@npm:2.1.3"
+  checksum: 10c0/7d52d6687be64e6ea0bdbbc66cb837031b5d170ceb881116736a6f6b820a64171d4dd1342814a47b554b2ed4c801c24721a014d2dd5e763e9c7fa2a5bccd3e7c
   languageName: node
   linkType: hard
 

@@ -3,7 +3,14 @@
 require "rails_helper"
 
 RSpec.describe "posts/index" do
-  let(:user) { User.create!(email: "jd@gmail.com", password: "pass123", first_name: "John", last_name: "Doe") }
+  let(:user) do
+    User.create!(
+      email: "jd@gmail.com",
+      password: "pass123",
+      first_name: "John",
+      last_name: "Doe"
+    )
+  end
 
   let(:posts) do
     [
@@ -19,7 +26,9 @@ RSpec.describe "posts/index" do
     # this is useful in situations where methods are defined at run time and you wish
     # to define stubs for them but not turn off partial doubles for the entire run suite.
     without_partial_double_verification do
-      allow(view).to receive(:posts).and_return(PostDecorator.decorate_collection(posts))
+      allow(view).to receive(:posts).and_return(
+        PostDecorator.decorate_collection(posts)
+      )
     end
   end
 
