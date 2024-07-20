@@ -1,5 +1,8 @@
 # InstaBlog
 
+[![CI/CD](https://github.com/binos30/blog-app/actions/workflows/ci.yml/badge.svg)](https://github.com/binos30/blog-app/actions/workflows/ci.yml)
+[![Dependabot Status](https://badgen.net/github/dependabot/binos30/blog-app?icon=dependabot)](https://dependabot.com)
+
 ## Setup
 
 Prerequisites
