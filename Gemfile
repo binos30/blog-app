@@ -114,3 +114,8 @@ group :development do
   # Optimize queries
   gem "bullet"
 end
+
+group :test do
+  gem "capybara"
+  gem "selenium-webdriver"
+end
