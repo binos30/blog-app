@@ -30,7 +30,6 @@ class Feedback < ApplicationRecord
   end
 
   def can_send_email?
-    (user_id != post.user_id) && !Rails.env.test? &&
-      ENV["SENDGRID_API_KEY"].present?
+    (user_id != post.user_id) && !Rails.env.test? && ENV["SENDGRID_API_KEY"].present?
   end
 end

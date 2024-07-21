@@ -3,12 +3,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable,
-         :registerable,
-         :recoverable,
-         :rememberable,
-         :validatable,
-         :trackable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable
 
   belongs_to :role
   has_many :posts, dependent: :destroy
@@ -24,12 +19,7 @@ class User < ApplicationRecord
             if: proc { |user| user.encrypted_password_changed? }
   validate :new_and_old_password_must_be_different
 
-  with_options presence: true,
-               length: {
-                 minimum: 2,
-                 maximum: 100
-               },
-               format: /\A([^\d\W]|-|\s)*\z/ do
+  with_options presence: true, length: { minimum: 2, maximum: 100 }, format: /\A([^\d\W]|-|\s)*\z/ do
     validates :first_name
     validates :last_name
   end
@@ -42,8 +32,7 @@ class User < ApplicationRecord
   def new_and_old_password_must_be_different
     return if changed.exclude?("encrypted_password")
 
-    password_is_same =
-      Devise::Encryptor.compare(User, encrypted_password_was, password)
+    password_is_same = Devise::Encryptor.compare(User, encrypted_password_was, password)
 
     return unless password_is_same
     errors.add(:base, I18n.t("errors.messages.old_password_not_allowed"))

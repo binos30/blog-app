@@ -41,17 +41,11 @@ module Sendgrid
       recipients.each do |recipient|
         case recipient["type"]
         when "bcc"
-          personalization.add_bcc(
-            SendGrid::Email.new(email: recipient["email"], name: recipient["name"])
-          )
+          personalization.add_bcc(SendGrid::Email.new(email: recipient["email"], name: recipient["name"]))
         when "cc"
-          personalization.add_cc(
-            SendGrid::Email.new(email: recipient["email"], name: recipient["name"])
-          )
+          personalization.add_cc(SendGrid::Email.new(email: recipient["email"], name: recipient["name"]))
         when "to"
-          personalization.add_to(
-            SendGrid::Email.new(email: recipient["email"], name: recipient["name"])
-          )
+          personalization.add_to(SendGrid::Email.new(email: recipient["email"], name: recipient["name"]))
         end
       end
     end

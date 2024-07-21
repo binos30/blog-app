@@ -49,12 +49,7 @@ module ApplicationHelper
       noindex: !Rails.env.production?,
       icon: [
         { href: image_url("logo.svg") },
-        {
-          href: image_url("logo.svg"),
-          rel: "apple-touch-icon",
-          sizes: "180x180",
-          type: "image/svg+xml"
-        }
+        { href: image_url("logo.svg"), rel: "apple-touch-icon", sizes: "180x180", type: "image/svg+xml" }
       ],
       og: {
         title: t(:title),

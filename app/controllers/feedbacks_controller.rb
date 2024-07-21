@@ -23,11 +23,7 @@ class FeedbacksController < ApplicationController
 
     respond_to do |format|
       if @feedback.save
-        format.html do
-          redirect_to @post,
-                      notice:
-                        t("record.create", record: Feedback.name, name: "")
-        end
+        format.html { redirect_to @post, notice: t("record.create", record: Feedback.name, name: "") }
         format.json { render "posts/show", status: :created, location: @post }
       else
         format.html do
@@ -35,9 +31,7 @@ class FeedbacksController < ApplicationController
           @pagy, @feedbacks = pagy_countless(feedbacks, limit: 10)
           render "posts/show", status: :unprocessable_entity
         end
-        format.json do
-          render json: @feedback.errors, status: :unprocessable_entity
-        end
+        format.json { render json: @feedback.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,9 +48,6 @@ class FeedbacksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def feedback_params
-    params
-      .require(:feedback)
-      .permit(:body)
-      .each_value { |value| value.try(:strip!) }
+    params.require(:feedback).permit(:body).each_value { |value| value.try(:strip!) }
   end
 end

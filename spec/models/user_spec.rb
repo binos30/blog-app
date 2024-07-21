@@ -4,12 +4,7 @@ require "rails_helper"
 
 RSpec.describe User do
   let!(:user) do
-    described_class.new(
-      email: "jd@gmail.com",
-      password: "pass1234",
-      first_name: "John",
-      last_name: "Doe"
-    )
+    described_class.new(email: "jd@gmail.com", password: "pass1234", first_name: "John", last_name: "Doe")
   end
 
   it "does not save without email and password" do

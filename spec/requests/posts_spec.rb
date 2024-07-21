@@ -15,26 +15,12 @@ require "rails_helper"
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/posts" do
-  let(:user) do
-    User.create!(
-      email: "jd@gmail.com",
-      password: "pass123",
-      first_name: "John",
-      last_name: "Doe"
-    )
-  end
+  let(:user) { User.create!(email: "jd@gmail.com", password: "pass123", first_name: "John", last_name: "Doe") }
 
   # This should return the minimal set of attributes required to create a valid
   # Post. As you add validations to Post, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) do
-    {
-      user_id: user.id,
-      title: "MyPostTitle",
-      content: "MyPostBody",
-      status: :public
-    }
-  end
+  let(:valid_attributes) { { user_id: user.id, title: "MyPostTitle", content: "MyPostBody", status: :public } }
 
   let(:invalid_attributes) { { title: "<MyPostTitle>", content: "MyPostBody" } }
 
@@ -74,10 +60,7 @@ RSpec.describe "/posts" do
   describe "POST /create" do
     context "with valid parameters" do
       it "creates a new Post" do
-        expect { post posts_url, params: { post: valid_attributes } }.to change(
-          Post,
-          :count
-        ).by(1)
+        expect { post posts_url, params: { post: valid_attributes } }.to change(Post, :count).by(1)
       end
 
       it "redirects to the created post" do
@@ -88,9 +71,7 @@ RSpec.describe "/posts" do
 
     context "with invalid parameters" do
       it "does not create a new Post" do
-        expect do
-          post posts_url, params: { post: invalid_attributes }
-        end.not_to change(Post, :count)
+        expect do post posts_url, params: { post: invalid_attributes } end.not_to change(Post, :count)
       end
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do

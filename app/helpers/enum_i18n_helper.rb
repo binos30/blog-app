@@ -9,9 +9,7 @@ module EnumI18nHelper
 
     if hash.empty?
       enum_instance = klass.send(enum.to_s.pluralize)
-      enum_instance.keys.collect do |key|
-        [klass.human_enum_name(enum, key), key]
-      end
+      enum_instance.keys.collect { |key| [klass.human_enum_name(enum, key), key] }
     else
       hash.keys.collect { |key| [klass.human_enum_name(enum, key), key] }
     end
