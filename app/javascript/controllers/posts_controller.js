@@ -26,6 +26,7 @@ export default class extends Controller {
       .then((response) => response.text())
       .then((html) => {
         this.turboProgressBar.hide();
+        // eslint-disable-next-line no-undef
         Turbo.renderStreamMessage(html);
       });
   }
