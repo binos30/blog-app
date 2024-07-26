@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UpdatePostBodyIndex < ActiveRecord::Migration[7.1]
   def up
     # The "pg_trgm" module provides functions and operators for determining the similarity of
