@@ -20,8 +20,8 @@ export default class extends Controller {
       mode: "cors",
       credentials: "same-origin",
       headers: {
-        Accept: "text/vnd.turbo-stream.html"
-      }
+        Accept: "text/vnd.turbo-stream.html",
+      },
     })
       .then((response) => response.text())
       .then((html) => {

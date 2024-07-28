@@ -1,6 +1,41 @@
 {
-  "name": "app",
+  "name": "instablog",
+  "description": "A simple web app for CRUDing a blog post and sending feedback email with authentication.",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/binos30/blog-app.git"
+  },
+  "keywords": [
+    "ruby",
+    "rails",
+    "blog",
+    "framework",
+    "mvc",
+    "article",
+    "rails-application",
+    "web-framework",
+    "mvc-framework",
+    "blog-article",
+    "ruby-on-rails",
+    "blog-post",
+    "rails-crud",
+    "rails-send-mail",
+    "hotwire-turbo",
+    "turbo-rails",
+    "hotwire-stimulus",
+    "stimulus-rails"
+  ],
+  "author": "Venus Lumanglas (https://binos30.github.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/binos30/blog-app/issues"
+  },
+  "engines": {
+    "yarn": "^4.3.1",
+    "node": "^20.15.1"
+  },
+  "homepage": "https://instablog.onrender.com",
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.5",
@@ -11,17 +46,17 @@
     "bootstrap-icons": "^1.11.3",
     "esbuild": "^0.23.0",
     "nodemon": "^3.1.4",
-    "postcss": "^8.4.39",
+    "postcss": "^8.4.40",
     "postcss-cli": "^11.0.0",
-    "sass": "1.77.6",
+    "sass": "^1.77.8",
     "trix": "^2.1.3"
   },
   "devDependencies": {
-    "@eslint/js": "^9.7.0",
-    "eslint": "9.x",
+    "@eslint/js": "^9.8.0",
+    "eslint": "^9.8.0",
     "eslint-formatter-gha": "^1.5.0",
     "globals": "^15.8.0",
-    "husky": "^9.1.1",
+    "husky": "^9.1.3",
     "lint-staged": "^15.2.7",
     "prettier": "^3.3.3"
   },
