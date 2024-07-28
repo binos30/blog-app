@@ -109,6 +109,9 @@ jobs:
       - name: Run Syntax Tree
         run: yarn stree-ci
 
+      - name: Run zeitwerk check
+        run: bin/rails zeitwerk:check
+
   test:
     runs-on: ubuntu-latest
     needs: [scan_ruby, lint]
@@ -141,6 +144,7 @@ jobs:
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
+          CI: true
         run: |
           bin/rails db:test:prepare
           bin/rspec
