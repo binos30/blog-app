@@ -11,7 +11,7 @@ class Post < ApplicationRecord
 
   has_rich_text :content
 
-  broadcasts_refreshes
+  # broadcasts_refreshes
 
   validates :title,
             presence: true,

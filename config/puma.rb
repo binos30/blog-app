@@ -37,4 +37,4 @@ pidfile ENV.fetch("PIDFILE", "tmp/pids/server.pid")
 plugin :tmp_restart
 
 # Run the Solid Queue's supervisor together with Puma and have Puma monitor and manage it
-plugin :solid_queue
+# plugin :solid_queue
