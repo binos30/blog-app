@@ -1,6 +1,8 @@
 - title post.title
-- set_meta_tags og: { title: meta_title(post.title), description: truncate(strip_tags(post.content), length: 150)}
-- set_meta_tags twitter: { title: meta_title(post.title), description: truncate(strip_tags(post.content), length: 150)}
+- set_meta_tags og: { title: meta_title(post.title), description: truncate(strip_tags(post.content),
+                length: 150) }
+- set_meta_tags twitter: { title: meta_title(post.title), description: truncate(strip_tags(post.content),
+                length: 150) }
 
 / = turbo_stream_from @post
 
