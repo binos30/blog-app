@@ -80,10 +80,8 @@
     "postinstall": "husky"
   },
   "lint-staged": {
-    "**/*.rb": [
-      "./bin/bundle exec stree write",
-      "./bin/rubocop -a"
-    ],
+    "{app,config,db/migrate,lib,spec}/**/*.rb": "./bin/bundle exec stree write",
+    "**/*.rb": "./bin/rubocop --force-exclusion -a",
     "spec/**/*_spec.rb": "./bin/rspec",
     "app/views/**/*.slim": "./bin/bundle exec slim-lint",
     "**/*.{css,html,js,json,md,mjs,scss,yml}": "./node_modules/.bin/prettier --write --cache --cache-location .cache/prettier",
