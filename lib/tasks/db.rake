@@ -21,11 +21,7 @@ namespace :db do
     user2 = User.last
 
     15.times do
-      Post.create!(
-        title: Faker::Lorem.sentence,
-        content: Faker::Lorem.paragraph_by_chars(number: 256),
-        user:
-      )
+      Post.create!(title: Faker::Lorem.sentence, content: Faker::Lorem.paragraph_by_chars(number: 256), user:)
     end
 
     10.times do
