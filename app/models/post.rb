@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   extend FriendlyId
   friendly_id :title
 
-  enum status: { public: 0, private: 1, archived: 2 }, _default: :public, _suffix: true
+  enum :status, { public: 0, private: 1, archived: 2 }, default: :public, suffix: true
 
   belongs_to :user
   has_many :feedbacks, dependent: :destroy
