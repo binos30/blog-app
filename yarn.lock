@@ -946,13 +946,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-formatter-gha@npm:^1.5.0":
-  version: 1.5.0
-  resolution: "eslint-formatter-gha@npm:1.5.0"
+"eslint-formatter-gha@npm:^1.5.1":
+  version: 1.5.1
+  resolution: "eslint-formatter-gha@npm:1.5.1"
   dependencies:
     eslint-formatter-json: "npm:^8.40.0"
     eslint-formatter-stylish: "npm:^8.40.0"
-  checksum: 10c0/5e04b77f5f8df8f2d55b40f2adc04443ea1ea7a0873a53900baae79700df9b108e3e43b80411cfc5be2785136df41bbc49270c3ecf05a826571448b046377cdf
+  checksum: 10c0/c522de974159e966219c07e869107ac61f4c3dfa91791ad0e1296f779c600c304d66da247462bd5783ac08dd4f322481cdc2bf20622c8898a44d47cc57ae5fc8
   languageName: node
   linkType: hard
 
@@ -1496,12 +1496,12 @@ __metadata:
     bootstrap-icons: "npm:^1.11.3"
     esbuild: "npm:^0.23.1"
     eslint: "npm:^9.9.1"
-    eslint-formatter-gha: "npm:^1.5.0"
+    eslint-formatter-gha: "npm:^1.5.1"
     globals: "npm:^15.9.0"
     husky: "npm:^9.1.5"
-    lint-staged: "npm:^15.2.9"
+    lint-staged: "npm:^15.2.10"
     nodemon: "npm:^3.1.4"
-    postcss: "npm:^8.4.41"
+    postcss: "npm:^8.4.44"
     postcss-cli: "npm:^11.0.0"
     prettier: "npm:^3.3.3"
     sass: "npm:^1.77.8"
@@ -1700,9 +1700,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lint-staged@npm:^15.2.9":
-  version: 15.2.9
-  resolution: "lint-staged@npm:15.2.9"
+"lint-staged@npm:^15.2.10":
+  version: 15.2.10
+  resolution: "lint-staged@npm:15.2.10"
   dependencies:
     chalk: "npm:~5.3.0"
     commander: "npm:~12.1.0"
@@ -1710,13 +1710,13 @@ __metadata:
     execa: "npm:~8.0.1"
     lilconfig: "npm:~3.1.2"
     listr2: "npm:~8.2.4"
-    micromatch: "npm:~4.0.7"
+    micromatch: "npm:~4.0.8"
     pidtree: "npm:~0.6.0"
     string-argv: "npm:~0.3.2"
     yaml: "npm:~2.5.0"
   bin:
     lint-staged: bin/lint-staged.js
-  checksum: 10c0/820c622378b62b826974af17f1747e2a4b0556e4fb99d101af89ad298d392ff079f580fdc576f16a27e975d726b95d73495fd524139402ff654c4649ef2f1a6a
+  checksum: 10c0/6ad7b41f5e87a84fa2eb1990080ea3c68a2f2031b4e81edcdc2a458cc878538eedb310e6f98ffd878a1287e1a52ac968e540ee8a0e96c247e04b0cbc36421cdd
   languageName: node
   linkType: hard
 
@@ -1804,13 +1804,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"micromatch@npm:^4.0.4, micromatch@npm:~4.0.7":
+"micromatch@npm:^4.0.4":
   version: 4.0.7
   resolution: "micromatch@npm:4.0.7"
   dependencies:
     braces: "npm:^3.0.3"
     picomatch: "npm:^2.3.1"
   checksum: 10c0/58fa99bc5265edec206e9163a1d2cec5fabc46a5b473c45f4a700adce88c2520456ae35f2b301e4410fb3afb27e9521fb2813f6fc96be0a48a89430e0916a772
+  languageName: node
+  linkType: hard
+
+"micromatch@npm:~4.0.8":
+  version: 4.0.8
+  resolution: "micromatch@npm:4.0.8"
+  dependencies:
+    braces: "npm:^3.0.3"
+    picomatch: "npm:^2.3.1"
+  checksum: 10c0/166fa6eb926b9553f32ef81f5f531d27b4ce7da60e5baf8c021d043b27a388fb95e46a8038d5045877881e673f8134122b59624d5cecbd16eb50a42e7a6b5ca8
   languageName: node
   linkType: hard
 
@@ -2257,14 +2267,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.41":
-  version: 8.4.41
-  resolution: "postcss@npm:8.4.41"
+"postcss@npm:^8.4.44":
+  version: 8.4.44
+  resolution: "postcss@npm:8.4.44"
   dependencies:
     nanoid: "npm:^3.3.7"
     picocolors: "npm:^1.0.1"
     source-map-js: "npm:^1.2.0"
-  checksum: 10c0/c1828fc59e7ec1a3bf52b3a42f615dba53c67960ed82a81df6441b485fe43c20aba7f4e7c55425762fd99c594ecabbaaba8cf5b30fd79dfec5b52a9f63a2d690
+  checksum: 10c0/53c33338261a3d4f4198f8893e9dfe8b828d8d9186142ee85f02d228f04245c5bbe31239411a357a556ad20ed96f28db24d0921d63edc428fdc9133289371a1d
   languageName: node
   linkType: hard
 

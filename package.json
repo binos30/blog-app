@@ -44,7 +44,7 @@
     "autoprefixer": "^10.4.20",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
-    "postcss": "^8.4.41",
+    "postcss": "^8.4.44",
     "postcss-cli": "^11.0.0",
     "sass": "^1.77.8",
     "trix": "^2.1.5"
@@ -53,10 +53,10 @@
     "@eslint/js": "^9.9.1",
     "esbuild": "^0.23.1",
     "eslint": "^9.9.1",
-    "eslint-formatter-gha": "^1.5.0",
+    "eslint-formatter-gha": "^1.5.1",
     "globals": "^15.9.0",
     "husky": "^9.1.5",
-    "lint-staged": "^15.2.9",
+    "lint-staged": "^15.2.10",
     "nodemon": "^3.1.4",
     "prettier": "^3.3.3"
   },
