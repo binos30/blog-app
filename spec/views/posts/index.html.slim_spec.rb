@@ -2,15 +2,9 @@
 
 require "rails_helper"
 
-RSpec.describe "posts/index" do
-  let(:user) { User.create!(email: "jd@gmail.com", password: "pass123", first_name: "John", last_name: "Doe") }
-
-  let(:posts) do
-    [
-      Post.create!(title: "Title", content: "MyText", user:, status: :public),
-      Post.create!(title: "Title 2", content: "MyText", user:, status: :public)
-    ]
-  end
+RSpec.describe "posts/index", type: :view do
+  let!(:user) { create :user }
+  let(:posts) { [create(:post, user:), create(:post, user:)] }
 
   before do
     @pagy, @posts = pagy_array(posts)
@@ -27,7 +21,7 @@ RSpec.describe "posts/index" do
     render
     title_selector = "h5"
     content_selector = "div.card-text"
-    assert_select title_selector, text: Regexp.new("Title".to_s), count: 2
-    assert_select content_selector, text: Regexp.new("MyText".to_s), count: 2
+    assert_select title_selector, text: Regexp.new("Post"), count: 2
+    assert_select content_selector, text: Regexp.new("Content"), count: 2
   end
 end

@@ -5,9 +5,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable
 
-  belongs_to :role
-  has_many :posts, dependent: :destroy
-  has_many :feedbacks, through: :posts
+  belongs_to :role, inverse_of: :users
+
+  has_many :posts, inverse_of: :user, dependent: :destroy
+  has_many :feedbacks, inverse_of: :user, dependent: :destroy
+  has_many :posts_feedbacks, through: :posts, source: :feedbacks
 
   validates :email, length: { maximum: 255 }
   validates :password,
@@ -35,7 +37,7 @@ class User < ApplicationRecord
     password_is_same = Devise::Encryptor.compare(User, encrypted_password_was, password)
 
     return unless password_is_same
-    errors.add(:base, I18n.t("errors.messages.old_password_not_allowed"))
+    errors.add(:password, I18n.t("devise.passwords.old_password_not_allowed"))
   end
 
   def set_role

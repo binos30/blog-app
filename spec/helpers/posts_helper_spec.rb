@@ -12,18 +12,11 @@ require "rails_helper"
 #     end
 #   end
 # end
-RSpec.describe PostsHelper do
-  let(:user_john) do
-    User.create!(email: "jd@gmail.com", password: "pass123", first_name: "John", last_name: "Doe")
-  end
-
-  let(:user_jane) do
-    User.create!(email: "jdoe@gmail.com", password: "pass123", first_name: "Jane", last_name: "Doe")
-  end
-
-  let(:post) do
-    Post.create!({ user_id: user_john.id, title: "MyPostTitle", content: "MyPostBody", status: :public })
-  end
+RSpec.describe PostsHelper, type: :helper do
+  let!(:role) { create :role }
+  let!(:user_john) { create :user, role:, first_name: "John", last_name: "Doe", email: "jd@gmail.com" }
+  let!(:user_jane) { create :user, role:, first_name: "Jane", last_name: "Doe", email: "jdoe@gmail.com" }
+  let!(:post) { create :post, user: user_john }
 
   describe "#post_author?" do
     it "returns true if post author is equal to current user" do

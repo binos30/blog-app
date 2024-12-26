@@ -2,12 +2,10 @@
 
 require "rails_helper"
 
-RSpec.describe FeedbackDecorator do
-  let(:user) { User.create!(email: "jd@gmail.com", password: "pass123", first_name: "John", last_name: "Doe") }
-
-  let(:post) { Post.create!(title: "Title", content: "MyText", user:, status: :public) }
-
-  let(:feedback) { Feedback.create!(post:, user:, body: "MyFeedbackBody").decorate }
+RSpec.describe FeedbackDecorator, type: :decorator do
+  let(:user) { build :user, first_name: "John", last_name: "Doe", email: "jd@gmail.com" }
+  let(:post) { build :post, user: }
+  let(:feedback) { build(:feedback, post:, user:).decorate }
 
   it "returns the author" do
     expect(feedback.author).to eq("John Doe")

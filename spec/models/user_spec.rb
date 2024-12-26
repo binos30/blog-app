@@ -2,34 +2,151 @@
 
 require "rails_helper"
 
-RSpec.describe User do
-  let!(:user) do
-    described_class.new(email: "jd@gmail.com", password: "pass1234", first_name: "John", last_name: "Doe")
+RSpec.describe User, type: :model do
+  describe "db_columns" do
+    it { should have_db_column(:email).of_type(:string).with_options(null: false, default: "") }
+    it { should have_db_column(:encrypted_password).of_type(:string).with_options(null: false, default: "") }
+    it { should have_db_column(:reset_password_token).of_type(:string) }
+    it { should have_db_column(:reset_password_sent_at).of_type(:datetime) }
+    it { should have_db_column(:remember_created_at).of_type(:datetime) }
+    it { should have_db_column(:sign_in_count).of_type(:integer).with_options(null: false, default: 0) }
+    it { should have_db_column(:current_sign_in_at).of_type(:datetime) }
+    it { should have_db_column(:last_sign_in_at).of_type(:datetime) }
+    it { should have_db_column(:current_sign_in_ip).of_type(:string) }
+    it { should have_db_column(:last_sign_in_ip).of_type(:string) }
+    it { should have_db_column(:first_name).of_type(:string).with_options(null: false, default: "") }
+    it { should have_db_column(:last_name).of_type(:string).with_options(null: false, default: "") }
+    it { should have_db_column(:active).of_type(:boolean).with_options(null: false, default: true) }
+    it { should have_db_column(:role_id).of_type(:integer).with_options(null: false) }
   end
 
-  it "does not save without email and password" do
-    user = described_class.new(first_name: "John", last_name: "Doe")
-    expect(user.save).to be false
+  describe "db_indexes" do
+    it { should have_db_index(:active) }
+    it { should have_db_index(:email).unique }
+    it { should have_db_index(:first_name) }
+    it { should have_db_index(:last_name) }
+    it { should have_db_index(:role_id) }
+    it { should have_db_index(:reset_password_token).unique }
   end
 
-  it "does not save without first name and last name" do
-    user = described_class.new(email: "jd@gmail.com", password: "pass123")
-    expect(user.save).to be false
+  describe "associations" do
+    describe "belongs_to" do
+      # Use `without_validating_presence` with `belong_to` to prevent the
+      # matcher from checking whether the association disallows nil (Rails 5+ only).
+      # This can be helpful if you have a custom hook that always sets the association to a meaningful value:
+      it { should belong_to(:role).inverse_of(:users).without_validating_presence }
+    end
+
+    describe "has_many" do
+      it { should have_many(:posts).inverse_of(:user).dependent(:destroy) }
+      it { should have_many(:feedbacks).inverse_of(:user).dependent(:destroy) }
+      it { should have_many(:posts_feedbacks).through(:posts).source(:feedbacks) }
+    end
   end
 
-  it "saves" do
-    expect(user.save).to be true
-  end
+  describe "validations" do
+    describe "presence" do
+      it { should validate_presence_of(:first_name) }
+      it { should validate_presence_of(:last_name) }
 
-  it "updates password" do
-    user.save
-    user.update(password: "admin123")
-    user.reload
-    expect(user.password).to eq("admin123")
-  end
+      subject! { create :user, password: "password" }
 
-  it "does not update new password similar to old" do
-    user.save
-    expect(user.update(password: "pass1234")).to be false
+      context "if encrypted_password_changed? on update" do
+        before { allow(subject).to receive(:encrypted_password_changed?).and_return(true) }
+
+        it { should validate_presence_of(:password).on(:update) }
+      end
+
+      context "if not encrypted_password_changed? on update" do
+        before { allow(subject).to receive(:encrypted_password_changed?).and_return(false) }
+
+        it { should_not validate_presence_of(:password).on(:update) }
+      end
+    end
+
+    describe "length" do
+      it { should validate_length_of(:email).is_at_most(255) }
+      it { should validate_length_of(:first_name).is_at_least(2).is_at_most(100) }
+      it { should validate_length_of(:last_name).is_at_least(2).is_at_most(100) }
+
+      subject! { create :user, password: "password" }
+
+      context "if encrypted_password_changed? on update" do
+        before { allow(subject).to receive(:encrypted_password_changed?).and_return(true) }
+
+        it { should validate_length_of(:password).on(:update).is_at_least(8).is_at_most(20) }
+      end
+
+      context "if not encrypted_password_changed? on update" do
+        before { allow(subject).to receive(:encrypted_password_changed?).and_return(false) }
+
+        it { should_not validate_length_of(:password).on(:update).is_at_least(8).is_at_most(20) }
+      end
+    end
+
+    describe "format" do
+      subject { build :user }
+
+      describe "first_name" do
+        it "accepts a valid value" do
+          subject.first_name = "John"
+          expect(subject).to be_valid
+        end
+
+        it "does not accept an invalid format" do
+          subject.first_name = "John-1"
+          expect(subject).to be_invalid
+        end
+      end
+
+      describe "last_name" do
+        it "accepts a valid value" do
+          subject.last_name = "Doe"
+          expect(subject).to be_valid
+        end
+
+        it "does not accept an invalid format" do
+          subject.last_name = "Doe-1"
+          expect(subject).to be_invalid
+        end
+      end
+    end
+
+    describe "before_validation .set_role" do
+      subject { build :user, role: }
+
+      let!(:role) { create :role, :as_admin }
+
+      it "sets the role to Administrator" do
+        subject.save!
+        expect(subject.role.name).to eq("Administrator")
+      end
+
+      context "when the role_id is nil" do
+        before { subject.role_id = nil }
+
+        it "sets the role to Member" do
+          subject.save!
+          expect(subject.role.name).to eq("Member")
+        end
+      end
+    end
+
+    describe "new_and_old_password_must_be_different" do
+      subject! { create :user, password: "password" }
+
+      it "is valid" do
+        expect(subject.valid?).to be true
+      end
+
+      context "when the password is similar to old" do
+        before { subject.password = "password" }
+
+        it "is has an error on password" do
+          subject.validate
+          expect(subject.errors[:password].first).to eq("Old password not allowed")
+        end
+      end
+    end
   end
 end

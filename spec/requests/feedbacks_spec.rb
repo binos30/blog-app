@@ -14,9 +14,9 @@ require "rails_helper"
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/posts/:post_slug/feedbacks" do
-  let(:user) { User.create!(email: "jd@gmail.com", password: "pass123", first_name: "John", last_name: "Doe") }
-  let(:blog_post) { Post.create!(title: "Title", content: "MyText", user:, status: :public) }
+RSpec.describe "/posts/:post_slug/feedbacks", type: :request do
+  let!(:user) { create :user }
+  let!(:blog_post) { create :post, user: }
 
   # This should return the minimal set of attributes required to create a valid
   # Feedback. As you add validations to Feedback, be sure to

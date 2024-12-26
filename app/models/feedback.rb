@@ -3,8 +3,8 @@
 class Feedback < ApplicationRecord
   include Sanitizable
 
-  belongs_to :post
-  belongs_to :user
+  belongs_to :post, inverse_of: :feedbacks
+  belongs_to :user, inverse_of: :feedbacks
 
   # broadcasts_refreshes_to :post
 
@@ -18,7 +18,7 @@ class Feedback < ApplicationRecord
   private
 
   def validate_body
-    errors.add(:base, "Feedback can't be blank") if body.blank?
+    errors.add(:body, "Feedback can't be blank") if body.blank?
   end
 
   def sanitize_fields

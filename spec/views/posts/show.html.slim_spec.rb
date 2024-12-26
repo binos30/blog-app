@@ -2,10 +2,8 @@
 
 require "rails_helper"
 
-RSpec.describe "posts/show" do
-  let(:user) { User.create!(email: "jd@gmail.com", password: "pass123", first_name: "John", last_name: "Doe") }
-
-  let(:post) { Post.create!(title: "Title", content: "MyText", user:, status: :public) }
+RSpec.describe "posts/show", type: :view do
+  let!(:post) { create :post }
 
   before do
     assign(:post, post)
@@ -19,8 +17,7 @@ RSpec.describe "posts/show" do
 
   it "renders attributes" do
     render
-    expect(rendered).to match(/Title/)
-    expect(rendered).to match(/MyText/)
-    expect(rendered).to match(//)
+    expect(rendered).to match(/Post/)
+    expect(rendered).to match(/Content/)
   end
 end
