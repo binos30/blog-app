@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe "posts/show", type: :view do
-  let!(:post) { create :post }
+  let(:post) { build_stubbed :post }
 
   before do
     assign(:post, post)

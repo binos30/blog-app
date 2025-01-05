@@ -49,7 +49,7 @@ RSpec.describe User, type: :model do
       it { should validate_presence_of(:first_name) }
       it { should validate_presence_of(:last_name) }
 
-      subject! { create :user, password: "password" }
+      subject { build_stubbed :user }
 
       context "if encrypted_password_changed? on update" do
         before { allow(subject).to receive(:encrypted_password_changed?).and_return(true) }
@@ -69,7 +69,7 @@ RSpec.describe User, type: :model do
       it { should validate_length_of(:first_name).is_at_least(2).is_at_most(100) }
       it { should validate_length_of(:last_name).is_at_least(2).is_at_most(100) }
 
-      subject! { create :user, password: "password" }
+      subject { build_stubbed :user }
 
       context "if encrypted_password_changed? on update" do
         before { allow(subject).to receive(:encrypted_password_changed?).and_return(true) }
@@ -133,7 +133,7 @@ RSpec.describe User, type: :model do
     end
 
     describe "new_and_old_password_must_be_different" do
-      subject! { create :user, password: "password" }
+      subject { build_stubbed :user, password: "password" }
 
       it "is valid" do
         expect(subject.valid?).to be true

@@ -14,18 +14,18 @@ require "rails_helper"
 # end
 RSpec.describe PostsHelper, type: :helper do
   let!(:role) { create :role }
-  let!(:user_john) { create :user, role:, first_name: "John", last_name: "Doe", email: "jd@gmail.com" }
-  let!(:user_jane) { create :user, role:, first_name: "Jane", last_name: "Doe", email: "jdoe@gmail.com" }
-  let!(:post) { create :post, user: user_john }
+  let!(:user) { create :user, role: }
+  let!(:user2) { create :user, role: }
+  let(:post) { build_stubbed :post, user: }
 
   describe "#post_author?" do
     it "returns true if post author is equal to current user" do
-      sign_in(user_john)
+      sign_in(user)
       expect(helper.post_author?(post.user_id)).to be true
     end
 
     it "returns false if post author is not equal to current user" do
-      sign_in(user_jane)
+      sign_in(user2)
       expect(helper.post_author?(post.user_id)).to be false
     end
   end

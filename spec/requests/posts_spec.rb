@@ -28,7 +28,7 @@ RSpec.describe "/posts", type: :request do
 
   describe "GET /index" do
     before do
-      create_list(:post, 2, user:)
+      build_stubbed_list(:post, 2, user:)
       get posts_url
     end
 

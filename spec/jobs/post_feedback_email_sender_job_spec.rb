@@ -7,10 +7,10 @@ RSpec.describe PostFeedbackEmailSenderJob, type: :job do
     subject(:job) { described_class.perform_later(feedback) }
 
     let!(:role) { create :role }
-    let!(:user_john) { create :user, role:, first_name: "John", last_name: "Doe", email: "jd@gmail.com" }
-    let!(:user_jane) { create :user, role:, first_name: "Jane", last_name: "Doe", email: "jdoe@gmail.com" }
-    let!(:post) { create :post, user: user_john }
-    let!(:feedback) { create :feedback, post:, user: user_jane }
+    let!(:user) { create :user, role: }
+    let!(:user2) { create :user, role: }
+    let!(:post) { create :post, user: }
+    let!(:feedback) { create :feedback, post:, user: user2 }
 
     it "queues the job" do
       ActiveJob::Base.queue_adapter = :test

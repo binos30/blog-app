@@ -12,6 +12,7 @@ FactoryBot.define do
       transient { posts_count { 2 } }
 
       after(:build) { |user, evaluator| build_list(:post, evaluator.posts_count, user:) }
+      after(:stub) { |user, evaluator| build_stubbed_list(:post, evaluator.posts_count, user:) }
     end
 
     trait :as_admin do
