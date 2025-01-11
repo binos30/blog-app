@@ -6,10 +6,6 @@
 
 / = turbo_stream_from @post
 
-== render "partials/alert"
-== render "partials/notice"
-== render "partials/warning"
-
 div id="#{dom_id @post}"
   h2 = @post.title
   / = time_tag @post.updated_at, "data-local": "time-ago"

@@ -25,5 +25,6 @@ html
   body.d-flex.flex-column.min-vh-100
     = render "partials/navbar"
     main.container.mt-5.pt-3
+      == render "partials/flash"
       = yield
     = render "partials/footer"
