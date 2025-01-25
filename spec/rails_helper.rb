@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 require "simplecov"
-SimpleCov.start { add_filter("spec/support") }
+SimpleCov.start "rails" do
+  add_group "Decorators", "app/decorators"
+end
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require "spec_helper"
