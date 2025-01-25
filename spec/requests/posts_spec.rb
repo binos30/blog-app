@@ -27,10 +27,7 @@ RSpec.describe "/posts", type: :request do
   before { sign_in(user) }
 
   describe "GET /index" do
-    before do
-      build_stubbed_list(:post, 2, user:)
-      get posts_url
-    end
+    before { get posts_url }
 
     it "renders a successful response" do
       expect(response).to be_successful
