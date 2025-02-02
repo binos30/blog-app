@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   extend FriendlyId
   friendly_id :title
 
-  enum :status, { public: 0, private: 1, archived: 2 }, default: :public, suffix: true
+  enum :status, { public: 0, private: 1, archived: 2 }, validate: true, default: :public, suffix: true
 
   belongs_to :user, inverse_of: :posts
 
@@ -20,7 +20,6 @@ class Post < ApplicationRecord
               case_sensitive: false
             },
             format: %r{\A[a-zA-Z0-9\s\-\[\]/*&;,._:()!?ñÑ]*\z}
-  validates :status, inclusion: { in: statuses.keys }
   validates :content, presence: true
 
   scope :public_status,
@@ -50,14 +49,6 @@ class Post < ApplicationRecord
             where(user_id: author_id)
           end
         end
-
-  # Overwrite the setter to rely on validations instead of [ArgumentError]
-  # https://github.com/rails/rails/issues/13971#issuecomment-721821257
-  def status=(value)
-    self[:status] = value
-  rescue ArgumentError
-    self[:status] = nil
-  end
 
   # Whether to generate a new slug.
   def should_generate_new_friendly_id?
