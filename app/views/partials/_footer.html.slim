@@ -1,9 +1,11 @@
-footer.py-3.border-top.bg-white.mt-auto
-  .text-center.text-body-secondary
+footer.py-3.border-top.bg-white.mt-auto.text-center
+  .text-body-secondary
+    | Life is a gift, and the Giver is good.
+  .text-body-secondary
     | Glory is all His &#9757;
-  .text-center.text-body-secondary
+  .text-body-secondary
     = "© #{Date.current.year} Venus Lumanglas"
-  .text-center
+  div
     = link_to "https://binos30.github.io", class: "link-dark me-3", title: "Website", target: :_blank, rel: :noopener do
       i.bi.bi-globe2.h5
     = link_to "https://github.com/binos30", class: "link-dark", title: "GitHub", target: :_blank, rel: :noopener do
