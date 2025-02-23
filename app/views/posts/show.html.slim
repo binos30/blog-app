@@ -14,10 +14,10 @@ div id="#{dom_id @post}"
     span.dot
     span.text-muted.ms-2
       - if @post.created_at == @post.updated_at
-        | Posted&nbsp;
+        = "#{t(".posted")}&nbsp;".html_safe
         = post.created_time_ago
       - else
-        | Edited&nbsp;
+        = "#{t(".edited")}&nbsp;".html_safe
         = post.updated_time_ago
   .mb-3 = @post.content
 
@@ -25,18 +25,18 @@ div id="#{dom_id @post}"
     - if user_signed_in?
       = link_to new_post_path, class: "btn btn-primary btn-sm me-1" do
         i.bi.bi-plus-lg.me-1
-        | New post
+        = t(".actions.new")
     - if post_author?(@post.user_id)
       = link_to edit_post_path(@post), class: "btn btn-success btn-sm me-1" do
         i.bi.bi-pencil.me-1
-        | Edit
+        = t(".actions.edit")
       = link_to post_path(@post),
                 data: { turbo_confirm: "Are you sure?", turbo_method: :delete },
                 class: "btn btn-danger btn-sm" do
         i.bi.bi-trash.me-1
-        | Delete
+        = t(".actions.delete")
 
-  =< link_to "Back to posts", posts_path
+  =< link_to t(".actions.back"), posts_path
 
   h2.mt-3 = pluralize(format_number_to_human(@post.feedbacks.count), "feedback")
   == render "partials/errors", errors: @feedback&.errors&.full_messages || []

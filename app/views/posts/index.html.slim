@@ -1,15 +1,15 @@
 - if current_page?(posts_path)
-  - title "Posts"
-  - set_meta_tags og: { title: meta_title("Posts"), description: "Lists of post" }
-  - set_meta_tags twitter: { title: meta_title("Posts"), description: "Lists of post" }
+  - title t(".page_title")
+  - set_meta_tags og: { title: meta_title(t(".page_title")), description: "Lists of post" }
+  - set_meta_tags twitter: { title: meta_title(t(".page_title")), description: "Lists of post" }
 
 .d-flex.justify-content-between
-  h2 Posts
+  h2 = t(".heading")
   div
     - if user_signed_in?
       = link_to new_post_path, class: "btn btn-primary btn-sm" do
         i.bi.bi-plus-lg.me-1
-        | New Post
+        = t(".new_post")
 
 == render "filter"
 
@@ -20,7 +20,7 @@
   - else
     .text-center.w-100
       h4.mt-3
-        | No posts found.
+        = t(".no_posts")
 
   = render "turbo_stream_replace_pagination"
 

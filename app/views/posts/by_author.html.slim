@@ -1,13 +1,13 @@
-- title "My Posts"
-- set_meta_tags og: { title: meta_title("My Posts"), description: "Lists of author post" }
-- set_meta_tags twitter: { title: meta_title("My Posts"), description: "Lists of author post" }
+- title t(".page_title")
+- set_meta_tags og: { title: meta_title(t(".page_title")), description: "Lists of author post" }
+- set_meta_tags twitter: { title: meta_title(t(".page_title")), description: "Lists of author post" }
 
 .d-flex.justify-content-between
-  h2 My Posts
+  h2 = t(".heading")
   div
     = link_to new_post_path, class: "btn btn-primary btn-sm" do
       i.bi.bi-plus-lg.me-1
-      | New Post
+      = t(".new_post")
 
 == render "filter", path: users_posts_path
 
@@ -18,7 +18,7 @@
   - else
     .text-center.w-100
       h4.mt-3
-        | No posts found.
+        = t(".no_posts")
 
   = render "turbo_stream_replace_pagination",
     src: users_posts_path(format: :turbo_stream, page: @pagy.next, search: params[:search])

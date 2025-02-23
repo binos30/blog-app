@@ -3,4 +3,4 @@ div class="d-flex mb-3"
   = form_with(url: path, method: :get,
     data: { turbo_frame: :posts, controller: "posts", action: "input->posts#submitFilter" }) do |f|
     = f.search_field :search, value: params[:search], class: "form-control",
-      placeholder: "Search Posts", aria: { label: "Search" }
+      placeholder: t(".search_posts"), aria: { label: t(".search") }

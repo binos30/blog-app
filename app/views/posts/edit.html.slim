@@ -1,20 +1,20 @@
-- title "Edit | #{@post.title}"
-- set_meta_tags og: { title: meta_title("Edit | #{@post.title}"), description: truncate(strip_tags(@post.content),
+- title t(".page_title", title: @post.title)
+- set_meta_tags og: { title: meta_title(t(".page_title", title: @post.title)), description: truncate(strip_tags(@post.content),
                 length: 150) }
-- set_meta_tags twitter: { title: meta_title("Edit | #{@post.title}"), description: truncate(strip_tags(@post.content),
+- set_meta_tags twitter: { title: meta_title(t(".page_title", title: @post.title)), description: truncate(strip_tags(@post.content),
                 length: 150) }
 
 .row.mb-3
   .col-md-8.offset-md-2
     .card
       .card-body
-        h1 Editing post
+        h1 = t(".heading")
 
         == render "form", post: @post
 
         br
 
         div
-          => link_to "Show this post", @post
+          => link_to t(".actions.show"), @post
           '|
-          =< link_to "Back to posts", posts_path
+          =< link_to t(".actions.back"), posts_path

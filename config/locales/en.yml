@@ -52,3 +52,54 @@ en:
           public: "Public"
           private: "Private"
           archived: "Archived"
+  feedbacks:
+    form:
+      submit: "Send Feedback"
+  partials:
+    navbar:
+      home: "Home"
+      blogs: "Blogs"
+      sign_in: "Sign In"
+      sign_up: "Sign Up"
+      sign_out: "Sign Out"
+      my_posts: "My Posts"
+      edit_profile: "Edit Profile"
+  posts:
+    filter:
+      search: "Search"
+      search_posts: "Search Posts"
+    form:
+      title: "Title"
+      status: "Status"
+      content: "Content"
+      create: "Create Post"
+      update: "Update Post"
+    by_author:
+      page_title: "My Posts"
+      heading: "My Posts"
+      new_post: "New Post"
+      no_posts: "No posts found."
+    edit:
+      page_title: "Edit | %{title}"
+      heading: "Edit Post"
+      actions:
+        show: "Show this post"
+        back: "Back to posts"
+    index:
+      page_title: "Posts"
+      heading: "Posts"
+      new_post: "New Post"
+      no_posts: "No posts found."
+    new:
+      page_title: "New Post"
+      heading: "New Post"
+      actions:
+        back: "Back to posts"
+    show:
+      posted: "Posted"
+      edited: "Edited"
+      actions:
+        new: "New Post"
+        edit: "Edit"
+        delete: "Delete"
+        back: "Back to posts"

@@ -2,30 +2,30 @@ nav.navbar.navbar-expand-lg.fixed-top.navbar-dark.bg-primary
   .container-fluid
     = link_to root_path, class: "navbar-brand" do
       = image_tag("logo.svg", width: "30", height: "25", class: "d-inline-block align-text-top", alt: "Logo")
-      | InstaBlog
+      = t(:title)
     button[class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"]
       span.navbar-toggler-icon
     .collapse.navbar-collapse#navbarSupportedContent
       ul.navbar-nav.me-auto.mb-2.mb-lg-0
         li.nav-item
-          = link_to "Home", root_path, class: "nav-link #{active_class(root_path)}"
+          = link_to t(".home"), root_path, class: "nav-link #{active_class(root_path)}"
         li.nav-item
-          = link_to "Blogs", posts_path, class: "nav-link #{active_class(posts_path)}"
+          = link_to t(".blogs"), posts_path, class: "nav-link #{active_class(posts_path)}"
         - if user_signed_in?
           li.nav-item.dropdown
             a.nav-link.dropdown-toggle#navbarDropdownMenuLink href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"
               = current_user.decorate.initials
             ul.dropdown-menu aria-labelledby="navbarDropdownMenuLink"
               li
-                = link_to "My Posts", users_posts_path, class: "dropdown-item #{active_class(users_posts_path)}"
+                = link_to t(".my_posts"), users_posts_path, class: "dropdown-item #{active_class(users_posts_path)}"
               li
-                = link_to "Edit Profile", edit_user_registration_path,
+                = link_to t(".edit_profile"), edit_user_registration_path,
                   class: "dropdown-item #{active_class(edit_user_registration_path)}"
               li
-                = link_to "Sign Out", destroy_user_session_path, "data-turbo-method": :delete, class: "dropdown-item"
+                = link_to t(".sign_out"), destroy_user_session_path, "data-turbo-method": :delete, class: "dropdown-item"
         - else
           li.nav-item
-            = link_to "Sign In", new_user_session_path, class: "nav-link #{active_class(new_user_session_path)}"
+            = link_to t(".sign_in"), new_user_session_path, class: "nav-link #{active_class(new_user_session_path)}"
           li.nav-item
-            = link_to "Sign Up", new_user_registration_path, class: "nav-link #{active_class(new_user_registration_path)}"
+            = link_to t(".sign_up"), new_user_registration_path, class: "nav-link #{active_class(new_user_registration_path)}"

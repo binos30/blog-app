@@ -1,19 +1,21 @@
+- submit_label = post.new_record? ? t(".create") : t(".update")
+
 = form_with(model: post) do |form|
   == render "partials/errors", errors: post&.errors&.full_messages || []
   .row.mb-3
     .col
-      = form.label :title, class: "form-label"
+      = form.label :title, t(".title"), class: "form-label"
       = form.text_field :title, class: "form-control"
       / == render "partials/errors", errors: post.errors.full_messages_for(:title)
   .row.mb-3
     .col
-      = form.label :status, class: "form-label"
+      = form.label :status, t(".status"), class: "form-label"
       = form.select :status, enum_for_select(Post, :status),
         {}, class: "form-select"
       / == render "partials/errors", errors: post.errors.full_messages_for(:status)
   .row.mb-3
     .col
-      = form.label :content, class: "form-label"
+      = form.label :content, t(".content"), class: "form-label"
       = form.rich_text_area :content, class: "form-control"
       / == render "partials/errors", errors: post.errors.full_messages_for(:content)
-  = form.submit class: "btn btn-primary btn-sm"
+  = form.submit submit_label, class: "btn btn-primary btn-sm"

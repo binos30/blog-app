@@ -2,4 +2,4 @@
   data: { controller: "form-reset" } do |form|
   .d-flex.flex-column.col-md-6.mt-4.mb-4
     = form.text_area :body, class: "form-control mb-3", placeholder: "Type your feedback", required: true
-    = form.submit class: "btn btn-primary btn-sm"
+    = form.submit t(".submit"), class: "btn btn-primary btn-sm"

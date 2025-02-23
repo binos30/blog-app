@@ -1,15 +1,15 @@
-- title "New"
-- set_meta_tags og: { title: meta_title("New"), description: "New post" }
-- set_meta_tags twitter: { title: meta_title("New"), description: "New post" }
+- title t(".page_title")
+- set_meta_tags og: { title: meta_title(t(".page_title")), description: "New post" }
+- set_meta_tags twitter: { title: meta_title(t(".page_title")), description: "New post" }
 
 .row.mb-3
   .col-md-8.offset-md-2
     .card
       .card-body
-        h2 New Post
+        h2 = t(".heading")
 
         == render "form", post: @post
 
         br
         div
-          = link_to "Back to posts", posts_path
+          = link_to t(".actions.back"), posts_path
