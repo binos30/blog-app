@@ -10,7 +10,7 @@ class Feedback < ApplicationRecord
 
   validate :validate_body
 
-  before_save :sanitize_fields
+  before_validation :sanitize_fields
 
   # Send email only if feedback author is not equal to blog post author
   after_create_commit :send_feedback_email, if: :can_send_email?
@@ -18,7 +18,7 @@ class Feedback < ApplicationRecord
   private
 
   def validate_body
-    errors.add(:body, "Feedback can't be blank") if body.blank?
+    errors.add(:base, "Feedback can't be blank") if body.blank?
   end
 
   def sanitize_fields

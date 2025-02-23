@@ -34,7 +34,7 @@ RSpec.describe Feedback, type: :model do
 
         it "is has an error on body" do
           subject.validate
-          expect(subject.errors[:body].first).to eq("Feedback can't be blank")
+          expect(subject.errors[:base].first).to eq("Feedback can't be blank")
         end
       end
     end
