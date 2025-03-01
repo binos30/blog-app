@@ -24,7 +24,8 @@ body {
 
 .line-clamp {
   display: -webkit-box;
-  -webkit-line-clamp: 3; // number of lines
+  line-clamp: 3; /* number of lines */
+  -webkit-line-clamp: 3; /* number of lines */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
