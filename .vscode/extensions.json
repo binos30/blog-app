@@ -6,13 +6,30 @@
   "recommendations": [
     "aliariff.slim-lint",
     "aliariff.vscode-erb-beautify",
+    "bung87.vscode-gemfile",
     "castwide.solargraph",
+    "christian-kohler.npm-intellisense",
+    "davidanson.vscode-markdownlint",
     "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
     "esbenp.prettier-vscode",
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
     "github.vscode-github-actions",
+    "github.vscode-pull-request-github",
     "hossaini.bootstrap-intellisense",
+    "kaiwood.endwise",
+    "kisstkondoros.vscode-gutter-preview",
+    "mhutchie.git-graph",
+    "mikestead.dotenv",
+    "naumovs.color-highlight",
     "redhat.vscode-yaml",
     "shopify.ruby-lsp",
-    "sianglim.slim"
+    "sianglim.slim",
+    "syler.sass-indented",
+    "usernamehw.errorlens",
+    "visualstudioexptteam.intellicode-api-usage-examples",
+    "visualstudioexptteam.vscodeintellicode",
+    "vscode-icons-team.vscode-icons"
   ]
 }
