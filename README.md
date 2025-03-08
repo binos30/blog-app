@@ -1,5 +1,7 @@
 # InstaBlog
 
+[![Created Badge](https://badges.pufler.dev/created/binos30/blog-app)](https://badges.pufler.dev)
+[![Updated Badge](https://badges.pufler.dev/updated/binos30/blog-app)](https://badges.pufler.dev)
 [![CI/CD](https://github.com/binos30/blog-app/actions/workflows/ci.yml/badge.svg)](https://github.com/binos30/blog-app/actions/workflows/ci.yml)
 [![Dependabot Status](https://badgen.net/github/dependabot/binos30/blog-app?icon=dependabot)](https://dependabot.com)
 
