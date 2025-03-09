@@ -22,6 +22,8 @@ class PostsController < ApplicationController
   # GET /posts/1
   def show
     redirect_to posts_url and return if !@post.public_status? && @post.user_id != current_user&.id
+
+    @post_feedbacks_count = @post.feedbacks.count
     feedbacks = @post.feedbacks.includes([:user]).order(created_at: :desc)
     @pagy, @feedbacks = pagy_countless(feedbacks, limit: 10)
     @feedback = @post.feedbacks.build
