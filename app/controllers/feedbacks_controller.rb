@@ -27,6 +27,7 @@ class FeedbacksController < ApplicationController
         format.json { render "posts/show", status: :created, location: @post }
       else
         format.html do
+          @post_feedbacks_count = @post.feedbacks.count
           feedbacks = @post.feedbacks.includes([:user]).order(created_at: :desc)
           @pagy, @feedbacks = pagy_countless(feedbacks, limit: 10)
           render "posts/show", status: :unprocessable_entity

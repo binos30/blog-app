@@ -7,6 +7,7 @@ RSpec.describe "posts/show", type: :view do
 
   before do
     assign(:post, post)
+    assign(:post_feedbacks_count, post.feedbacks.count)
     assign(:feedback, post.feedbacks.build)
 
     # Turns off the verifying of partial doubles for the duration of the block,
