@@ -8,7 +8,7 @@ default: &default
       processes: <%= ENV.fetch("JOB_CONCURRENCY", 1) %>
       polling_interval: 0.1
     - queues: [turbo_streams_*, real_time, background]
-      threads: 5
+      threads: 3
       polling_interval: 0.1
       processes: 3
 
