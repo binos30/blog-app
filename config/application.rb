@@ -28,6 +28,7 @@ module BlogApp
     # Queuing backend for Active Job
     config.active_job.queue_adapter = :solid_queue
     config.active_job.queue_name_prefix = Rails.env
+    config.solid_queue.connects_to = { database: { writing: :queue } }
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
