@@ -36,4 +36,5 @@ plugin :tmp_restart
 pidfile ENV["PIDFILE"] if ENV["PIDFILE"]
 
 # Run the Solid Queue's supervisor together with Puma and have Puma monitor and manage it
-# plugin :solid_queue
+# You can either set the env var, or check for development
+plugin :solid_queue if ENV["SOLID_QUEUE_IN_PUMA"] || Rails.env.development?
