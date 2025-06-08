@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Feedback, type: :model do
+RSpec.describe Feedback do
   describe "db_columns" do
     it { should have_db_column(:body).of_type(:text).with_options(null: false) }
     it { should have_db_column(:post_id).of_type(:integer).with_options(null: false) }
@@ -23,7 +23,7 @@ RSpec.describe Feedback, type: :model do
 
   describe "validations" do
     describe "validate_body" do
-      subject { build :feedback }
+      subject { build(:feedback) }
 
       it "is valid" do
         expect(subject.valid?).to be true

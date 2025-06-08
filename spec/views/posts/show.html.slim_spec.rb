@@ -2,8 +2,8 @@
 
 require "rails_helper"
 
-RSpec.describe "posts/show", type: :view do
-  let(:post) { build_stubbed :post }
+RSpec.describe "posts/show" do
+  let(:post) { build_stubbed(:post) }
 
   before do
     assign(:post, post)

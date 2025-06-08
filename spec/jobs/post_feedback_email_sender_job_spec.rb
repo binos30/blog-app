@@ -2,15 +2,15 @@
 
 require "rails_helper"
 
-RSpec.describe PostFeedbackEmailSenderJob, type: :job do
+RSpec.describe PostFeedbackEmailSenderJob do
   describe "#perform_later" do
     subject(:job) { described_class.perform_later(feedback) }
 
-    let!(:role) { create :role }
-    let!(:user) { create :user, role: }
-    let!(:user2) { create :user, role: }
-    let!(:post) { create :post, user: }
-    let!(:feedback) { create :feedback, post:, user: user2 }
+    let!(:role) { create(:role) }
+    let!(:user) { create(:user, role:) }
+    let!(:user2) { create(:user, role:) }
+    let!(:post) { create(:post, user:) }
+    let!(:feedback) { create(:feedback, post:, user: user2) }
 
     it "queues the job" do
       ActiveJob::Base.queue_adapter = :test

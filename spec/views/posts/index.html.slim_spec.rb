@@ -2,9 +2,9 @@
 
 require "rails_helper"
 
-RSpec.describe "posts/index", type: :view do
-  let(:user) { build_stubbed :user }
-  let(:posts) { build_stubbed_list :post, 2, user: }
+RSpec.describe "posts/index" do
+  let(:user) { build_stubbed(:user) }
+  let(:posts) { build_stubbed_list(:post, 2, user:) }
 
   before do
     @pagy, @posts = pagy_array(posts)

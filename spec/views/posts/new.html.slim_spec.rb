@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "posts/new", type: :view do
+RSpec.describe "posts/new" do
   before { assign(:post, build(:post)) }
 
   it "renders new post form" do

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe FeedbacksController, type: :routing do
+RSpec.describe FeedbacksController do
   describe "routing" do
     it "routes to #create" do
       expect(post: "/posts/:post_slug/feedbacks").to route_to(

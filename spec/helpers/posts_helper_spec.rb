@@ -12,11 +12,11 @@ require "rails_helper"
 #     end
 #   end
 # end
-RSpec.describe PostsHelper, type: :helper do
-  let!(:role) { create :role }
-  let!(:user) { create :user, role: }
-  let!(:user2) { create :user, role: }
-  let(:post) { build_stubbed :post, user: }
+RSpec.describe PostsHelper do
+  let!(:role) { create(:role) }
+  let!(:user) { create(:user, role:) }
+  let!(:user2) { create(:user, role:) }
+  let(:post) { build_stubbed(:post, user:) }
 
   describe "#post_author?" do
     it "returns true if post author is equal to current user" do

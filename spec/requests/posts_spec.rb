@@ -14,8 +14,8 @@ require "rails_helper"
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/posts", type: :request do
-  let!(:user) { create :user }
+RSpec.describe "/posts" do
+  let!(:user) { create(:user) }
 
   # This should return the minimal set of attributes required to create a valid
   # Post. As you add validations to Post, be sure to
@@ -35,7 +35,7 @@ RSpec.describe "/posts", type: :request do
   end
 
   describe "GET /show" do
-    let!(:post) { create :post, user: }
+    let!(:post) { create(:post, user:) }
 
     before { get post_url(post) }
 
@@ -52,7 +52,7 @@ RSpec.describe "/posts", type: :request do
   end
 
   describe "GET /edit" do
-    let!(:post) { create :post, user: }
+    let!(:post) { create(:post, user:) }
 
     before { get edit_post_url(post) }
 
@@ -86,7 +86,7 @@ RSpec.describe "/posts", type: :request do
   end
 
   describe "PATCH /update" do
-    let!(:post) { create :post, user: }
+    let!(:post) { create(:post, user:) }
     let(:new_attributes) { { title: "MyPostTitle2" } }
 
     context "with valid parameters" do
@@ -114,7 +114,7 @@ RSpec.describe "/posts", type: :request do
   end
 
   describe "DELETE /destroy" do
-    let!(:post) { create :post, user: }
+    let!(:post) { create(:post, user:) }
 
     it "destroys the requested post" do
       expect { delete post_url(post) }.to change(Post, :count).by(-1)

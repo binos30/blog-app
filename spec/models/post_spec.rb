@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Post, type: :model do
+RSpec.describe Post do
   describe "db_columns" do
     it { should have_db_column(:title).of_type(:string).with_options(null: false, default: "") }
     it { should have_db_column(:user_id).of_type(:integer).with_options(null: false) }
@@ -38,17 +38,17 @@ RSpec.describe Post, type: :model do
     end
 
     describe "inclusion" do
-      it { should validate_inclusion_of(:status).in_array(Post.statuses.keys) }
+      it { should validate_inclusion_of(:status).in_array(described_class.statuses.keys) }
     end
 
     describe "uniqueness" do
-      subject { build :post }
+      subject { build(:post) }
 
       it { should validate_uniqueness_of(:title).case_insensitive }
     end
 
     describe "format" do
-      subject { build :post }
+      subject { build(:post) }
 
       describe "title" do
         it "accepts a valid value" do
@@ -58,7 +58,7 @@ RSpec.describe Post, type: :model do
 
         it "does not accept an invalid format" do
           subject.title = "Post<1>"
-          expect(subject).to be_invalid
+          expect(subject).not_to be_valid
         end
       end
     end
