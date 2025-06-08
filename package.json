@@ -55,8 +55,6 @@
     "eslint": "^9.28.0",
     "eslint-formatter-gha": "^1.5.2",
     "globals": "^16.2.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.1.0",
     "nodemon": "^3.1.10",
     "prettier": "^3.5.3"
   },
@@ -66,24 +64,15 @@
     "build:css:prefix": "postcss ./app/assets/builds/application.css --use=autoprefixer --output=./app/assets/builds/application.css",
     "build:css": "yarn build:css:compile && yarn build:css:prefix",
     "watch:css": "nodemon --watch ./app/assets/stylesheets/ --ext scss --exec \"yarn build:css\"",
-    "eslint": "eslint . --cache --cache-location .cache/eslint --report-unused-disable-directives",
+    "eslint-check": "eslint . --cache --cache-location .cache/eslint --report-unused-disable-directives",
     "eslint-ci": "eslint . --cache --cache-strategy content --cache-location .cache/eslint --format gha",
     "eslint-fix": "eslint . --cache --cache-location .cache/eslint --fix --report-unused-disable-directives",
-    "prettier": "prettier . --check --cache --cache-location .cache/prettier",
+    "prettier-check": "prettier . --check --cache --cache-location .cache/prettier",
     "prettier-ci": "prettier . --check --cache --cache-strategy content --cache-location .cache/prettier",
     "prettier-fix": "prettier . --write --cache --cache-location .cache/prettier",
     "slim-lint": "bin/bundle exec slim-lint 'app/views/**/*.slim'",
     "stree": "bin/bundle exec stree check '**/*.{rake,rb}'",
-    "stree-fix": "bin/bundle exec stree write '**/*.{rake,rb}'",
-    "postinstall": "husky"
-  },
-  "lint-staged": {
-    "{app,config,db/migrate,lib,spec}/**/*.{rake,rb}": "./bin/bundle exec stree write",
-    "**/*.{rake,rb}": "./bin/rubocop --force-exclusion -A",
-    "spec/**/*_spec.rb": "./bin/rspec",
-    "app/views/**/*.slim": "./bin/bundle exec slim-lint",
-    "**/*.{css,html,js,json,md,mjs,scss,yml}": "./node_modules/.bin/prettier --write --cache --cache-location .cache/prettier",
-    "**/*.{cjs,js,mjs}": "./node_modules/.bin/eslint --cache --cache-location .cache/eslint --fix --report-unused-disable-directives"
+    "stree-fix": "bin/bundle exec stree write '**/*.{rake,rb}'"
   },
   "browserslist": [
     "defaults"
